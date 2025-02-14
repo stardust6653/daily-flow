@@ -10,6 +10,7 @@ import {
 
 interface LogoProps {
   color?: "color" | "white";
+  margin?: string;
 }
 
 const LogoImage = ({ selectedColor }: { selectedColor: StaticImageData }) => {
@@ -22,11 +23,11 @@ const LogoImage = ({ selectedColor }: { selectedColor: StaticImageData }) => {
   );
 };
 
-const Logo = ({ color = "color" }: LogoProps) => {
+const Logo = ({ color = "color", margin = "" }: LogoProps) => {
   const selectedColor = color === "color" ? ColorLogo : WhiteLogo;
 
   return (
-    <h1 className={LogoStyle}>
+    <h1 className={LogoStyle} style={{ margin }}>
       <LogoImage selectedColor={selectedColor} />
       <span
         className={`${LogoSpanTextStyle[color]} ${LogoTextVariants[color]}`}

@@ -1,10 +1,11 @@
+import { themeVars } from "@/app/styles/theme.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const LogoStyle = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  fontSize: "1.5rem",
+  fontSize: themeVars.fontSizes.xxl,
   fontWeight: 600,
 });
 
@@ -14,7 +15,7 @@ export const LogoImageStyle = style({
 
 // 공통 스타일 정의
 const spanBase = style({
-  marginRight: 5,
+  marginRight: 3,
 });
 
 // prop에 따른 컬러

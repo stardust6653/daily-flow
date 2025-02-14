@@ -6,6 +6,7 @@ export const wrapperDisplay = createVar();
 export const wrapperFlexDirection = createVar();
 export const wrapperJustifyContent = createVar();
 export const wrapperAlignItems = createVar();
+export const wrapperBoxShadow = createVar();
 
 export const WrapperStyle = style({
   width: wrapperWidth,
@@ -14,5 +15,6 @@ export const WrapperStyle = style({
   flexDirection: wrapperFlexDirection,
   justifyContent: wrapperJustifyContent,
   alignItems: wrapperAlignItems,
+  boxShadow: wrapperBoxShadow,
   position: "relative",
 });
