@@ -9,7 +9,6 @@ import {
   wrapperFlexDirection,
   wrapperJustifyContent,
   wrapperAlignItems,
-  wrapperBoxShadow,
 } from "./Wrapper.css";
 
 interface WrapperProps {
@@ -19,7 +18,6 @@ interface WrapperProps {
   flexDirection?: string;
   justifyContent?: string;
   alignItems?: string;
-  boxShadow?: string;
   children: React.ReactNode;
 }
 
@@ -30,7 +28,6 @@ export const Wrapper = ({
   flexDirection = "column",
   justifyContent = "center",
   alignItems = "center",
-  boxShadow = "none",
   children,
 }: WrapperProps) => {
   const styleValue = assignInlineVars({
@@ -40,7 +37,6 @@ export const Wrapper = ({
     [wrapperFlexDirection]: flexDirection,
     [wrapperJustifyContent]: justifyContent,
     [wrapperAlignItems]: alignItems,
-    [wrapperBoxShadow]: boxShadow,
   });
 
   return (
