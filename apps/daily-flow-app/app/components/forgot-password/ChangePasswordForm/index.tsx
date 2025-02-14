@@ -1,25 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import Input from "@/app/components/common/Input";
-
+import { useRouter } from "next/navigation";
 import AuthFormWrapper from "../../common/AuthFormWrapper";
+import Input from "../../common/Input";
+import { useState } from "react";
 
-const SignupForm = () => {
-  const [email, setEmail] = useState("");
+const ChangePasswordForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  console.log(email, password, confirmPassword);
+  console.log(password, confirmPassword);
+
+  const router = useRouter();
+  const onClick = () => router.push("/");
 
   return (
-    <AuthFormWrapper onClick={() => console.log("클릭")} type="signup">
-      <Input
-        setValue={setEmail}
-        errorMessage="올바른 형식의 이메일이 아닙니다"
-        placeholder="Email"
-        type="email"
-      />
+    <AuthFormWrapper type="changePassword" onClick={onClick}>
       <Input
         setValue={setPassword}
         errorMessage="최소한 하나 이상의 특수문자가 포함되어야 합니다"
@@ -37,4 +33,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default ChangePasswordForm;
