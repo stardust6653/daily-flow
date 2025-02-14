@@ -9,12 +9,20 @@ interface InputProps {
   errorMessage: string;
   placeholder: string;
   type: string;
+  label?: string;
 }
 
-const Input = ({ setValue, errorMessage, placeholder, type }: InputProps) => {
+const Input = ({
+  setValue,
+  errorMessage,
+  placeholder,
+  type,
+  label,
+}: InputProps) => {
   return (
     <div className={InputFormStyle}>
       <input
+        id={label}
         className={InputStyle}
         type={type}
         placeholder={placeholder}
