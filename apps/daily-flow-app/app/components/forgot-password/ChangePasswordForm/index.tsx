@@ -12,7 +12,7 @@ const ChangePasswordForm = () => {
   console.log(password, confirmPassword);
 
   const router = useRouter();
-  const onClick = () => router.push("/");
+  const onClick = () => router.push("/complete");
 
   return (
     <AuthFormWrapper type="changePassword" onClick={onClick}>

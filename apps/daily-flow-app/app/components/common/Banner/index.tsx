@@ -9,7 +9,7 @@ interface BannerProps {
   firstLine: string;
   secondLine: string;
   type: "signin" | "signup";
-  buttonType: "white" | "primary";
+  buttonType: "white" | "primary" | "none";
 }
 
 const Banner = ({
@@ -34,11 +34,13 @@ const Banner = ({
         <br />
         <span>{secondLine}</span>
       </p>
-      <Button
-        text={buttonText}
-        type={buttonColor}
-        onClick={handleButtonClick}
-      />
+      {buttonType !== "none" && (
+        <Button
+          text={buttonText}
+          type={buttonColor}
+          onClick={handleButtonClick}
+        />
+      )}
     </div>
   );
 };
