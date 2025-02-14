@@ -39,3 +39,15 @@ globalStyle("table", {
   borderCollapse: "collapse",
   borderSpacing: 0,
 });
+
+globalStyle("a", {
+  textDecoration: "none",
+  color: "inherit",
+});
+
+globalStyle("button", {
+  padding: 0,
+  border: "none",
+  background: "none",
+  cursor: "pointer",
+});
