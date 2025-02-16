@@ -4,6 +4,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 const baseButtonStyle = style({
   padding: "10px 25px",
   borderRadius: themeVars.radii.md,
+  boxSizing: "border-box",
   transition: "all 0.2s ease-in-out",
   cursor: "pointer",
   border: "none",

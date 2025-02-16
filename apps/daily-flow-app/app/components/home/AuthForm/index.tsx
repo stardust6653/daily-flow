@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Input from "../../common/Input";
-import AccountRecoveryLink from "../../common/AccountRecoveryLink";
 import AuthFormWrapper from "../../common/AuthFormWrapper";
 
 const AuthForm: React.FC = () => {
@@ -24,13 +23,6 @@ const AuthForm: React.FC = () => {
         placeholder="Password"
         type="password"
       />
-
-      <AccountRecoveryLink
-        href="/forgot-password/verify-email"
-        margin="10px 0 0"
-      >
-        비밀번호를 잊으셨나요?
-      </AccountRecoveryLink>
     </AuthFormWrapper>
   );
 };

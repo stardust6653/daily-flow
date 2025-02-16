@@ -1,6 +1,11 @@
+import AccountRecoveryLink from "../AccountRecoveryLink";
 import Button from "../Button";
 import Logo from "../Logo";
-import { AuthFormWrapperStyle } from "./AuthFormWrapper.css";
+import {
+  AuthButtonStyle,
+  AuthFormWrapperStyle,
+  LogoWrapperStyle,
+} from "./AuthFormWrapper.css";
 
 interface AuthFormWrapperProps {
   children: React.ReactNode;
@@ -30,21 +35,30 @@ const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
   };
 
   return (
-    <>
-      <form
-        className={AuthFormWrapperStyle}
-        onSubmit={(e) => e.preventDefault()}
-      >
+    <div className={AuthFormWrapperStyle} onSubmit={(e) => e.preventDefault()}>
+      <div className={LogoWrapperStyle}>
         <Logo color="color" margin="0 0 44px" />
-        {children}
+      </div>
+
+      <div>{children}</div>
+      <div className={AuthButtonStyle}>
+        {type === "signin" && (
+          <AccountRecoveryLink
+            href="/forgot-password/verify-email"
+            margin="10px 0 0"
+          >
+            비밀번호를 잊으셨나요?
+          </AccountRecoveryLink>
+        )}
+
         <Button
           text={buttonText(type)}
           type="primary"
           onClick={onClick}
           margin="20px 0 0"
         />
-      </form>
-    </>
+      </div>
+    </div>
   );
 };
 
