@@ -35,7 +35,7 @@ const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
   };
 
   return (
-    <div className={AuthFormWrapperStyle} onSubmit={(e) => e.preventDefault()}>
+    <form className={AuthFormWrapperStyle} onSubmit={(e) => e.preventDefault()}>
       <div className={LogoWrapperStyle}>
         <Logo color="color" margin="0 0 44px" />
       </div>
@@ -58,7 +58,7 @@ const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
           margin="20px 0 0"
         />
       </div>
-    </div>
+    </form>
   );
 };
 
