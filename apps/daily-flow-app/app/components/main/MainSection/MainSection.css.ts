@@ -29,6 +29,7 @@ export const MainSectionAddButtonStyle = style({
   padding: "10px 15px",
   color: themeVars.colors.gray[400],
   backgroundColor: themeVars.colors.gray[200],
+  transition: "all 0.3s ease-in-out",
 
   ":hover": {
     color: themeVars.colors.gray[500],
