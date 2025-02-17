@@ -2,22 +2,72 @@
   {
     "name": "일상",
     "color": "#9994D0",
-    "todos": {
-      "label": "진행 전",
-      "color": "9681FF",
-      "items": [
-        {
-          "created_at": "2025-02-17T00:00:00",
-          "id": "1",
-          "main_task": "메인 태스크",
-          "sub_task": ["서브 태스크1", "서브 태스크2"],
-          "memo": "테스트 데이터 입니다.",
-          "type": "todo",
-          "period": "",
-          "complete": false
-        }
-      ]
-    }
+    "todos": [
+      {
+        "label": "진행 전",
+        "color": "#9681FF",
+        "sub_color": "#F0F1FF",
+        "items": [
+          {
+            "created_at": "2025-02-17T00:00:00",
+            "id": "1",
+            "main_task": "메인 태스크",
+            "sub_task": ["서브 태스크1", "서브 태스크2"],
+            "memo": "테스트 데이터 입니다.",
+            "type": "todo",
+            "period": "",
+            "complete": false
+          }
+        ]
+      },
+
+      {
+        "label": "진행 중",
+        "color": "#FF8183",
+        "sub_color": "#FFF0F4",
+
+        "items": [
+          {
+            "created_at": "2025-02-17T00:00:00",
+            "id": "1",
+            "main_task": "메인 태스크",
+            "sub_task": ["서브 태스크1", "서브 태스크2"],
+            "memo": "테스트 데이터 입니다.",
+            "type": "calendar",
+            "period": "2025-02-17 ~ 2025-02-28",
+            "complete": false
+          },
+          {
+            "created_at": "2025-02-17T00:00:00",
+            "id": "2",
+            "main_task": "메인 태스크",
+            "sub_task": [],
+            "memo": "테스트 데이터 입니다.",
+            "type": "todo",
+            "period": "",
+            "complete": false
+          }
+        ]
+      },
+
+      {
+        "label": "완료",
+        "color": "#67CF86",
+        "sub_color": "#F0FFF6",
+        "items": [
+          {
+            "created_at": "2025-02-17T00:00:00",
+            "id": "1",
+            "main_task": "메인 태스크",
+            "sub_task": ["서브 태스크1", "서브 태스크2"],
+            "memo": "테스트 데이터 입니다.",
+            "type": "todo",
+            "period": "",
+            "complete": true
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "업무",

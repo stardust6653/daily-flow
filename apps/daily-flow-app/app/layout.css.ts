@@ -5,5 +5,5 @@ export const LayoutStyle = style({
   flexDirection: "column",
   height: "100vh",
   overflow: "hidden",
-  backgroundColor: "#F1F1F1",
+  backgroundColor: "#FAFAFA",
 });

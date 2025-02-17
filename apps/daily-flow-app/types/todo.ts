@@ -5,13 +5,14 @@ export interface TodoDataType {
 export interface TodoListDataType {
   name: string;
   color: string;
-  todos: TodoListType;
+  todos: TodoListType[];
 }
 
 export interface TodoListType {
   label: string;
   color: string;
-  items: TodoItemType[];
+  sub_color: string;
+  items?: TodoItemType[];
 }
 
 export interface TodoItemType {
@@ -20,7 +21,7 @@ export interface TodoItemType {
   main_task: string;
   sub_task: string[];
   memo: string;
-  type: "todo" | "calendar";
+  type: "todo" | "calendar" | string;
   period: string;
-  complete: false;
+  complete: boolean;
 }
