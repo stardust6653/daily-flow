@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Input from "../../common/Input";
-import AuthFormWrapper from "../../common/AuthFormWrapper";
+import AuthFormWrapper from "../../layout/AuthFormWrapper";
 import { useRouter } from "next/navigation";
 
 const AuthForm: React.FC = () => {

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Wrapper } from "../../common/Wrapper";
+import { Wrapper } from "../../layout/LayoutWrapper";
 
 const AuthWrapper = ({ children }: { children: ReactNode }) => {
   return (

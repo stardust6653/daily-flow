@@ -8,7 +8,7 @@ export const wrapperFlexDirection = createVar();
 export const wrapperJustifyContent = createVar();
 export const wrapperAlignItems = createVar();
 
-export const WrapperStyle = style({
+export const LayoutWrapperStyle = style({
   width: wrapperWidth,
   height: wrapperHeight,
   display: wrapperDisplay,

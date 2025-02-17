@@ -1,11 +1,11 @@
 import Banner from "./components/common/Banner";
-import { Wrapper } from "./components/common/Wrapper";
+import LayoutWrapper from "./components/layout/LayoutWrapper";
 import AuthForm from "./components/home/AuthForm";
 import AuthWrapper from "./components/home/AuthWrapper";
 
 export default function Home() {
   return (
-    <Wrapper flexDirection="center" alignItems="center" height="100vh">
+    <LayoutWrapper flexDirection="center" alignItems="center" height="100vh">
       <AuthWrapper>
         <AuthForm />
         <Banner
@@ -16,6 +16,6 @@ export default function Home() {
           buttonType="white"
         />
       </AuthWrapper>
-    </Wrapper>
+    </LayoutWrapper>
   );
 }

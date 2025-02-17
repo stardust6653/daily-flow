@@ -1,11 +1,11 @@
 import Banner from "../components/common/Banner";
-import { Wrapper } from "../components/common/Wrapper";
+import LayoutWrapper from "../components/layout/LayoutWrapper";
 import AuthWrapper from "../components/home/AuthWrapper";
 import SignupForm from "../components/signup/SignupForm";
 
 const SignUpPage = () => {
   return (
-    <Wrapper flexDirection="center" alignItems="center" height="100vh">
+    <LayoutWrapper flexDirection="center" alignItems="center" height="100vh">
       <AuthWrapper>
         <SignupForm />
         <Banner
@@ -16,7 +16,7 @@ const SignUpPage = () => {
           buttonType="white"
         />
       </AuthWrapper>
-    </Wrapper>
+    </LayoutWrapper>
   );
 };
 

@@ -2,16 +2,16 @@
 
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import {
-  WrapperStyle,
   wrapperWidth,
   wrapperHeight,
   wrapperDisplay,
   wrapperFlexDirection,
   wrapperJustifyContent,
   wrapperAlignItems,
-} from "./Wrapper.css";
+  LayoutWrapperStyle,
+} from "./LayoutWrapper.css";
 
-interface WrapperProps {
+interface LayoutWrapperProps {
   width?: string;
   height?: string;
   display?: string;
@@ -21,7 +21,7 @@ interface WrapperProps {
   children: React.ReactNode;
 }
 
-export const Wrapper = ({
+const LayoutWrapper = ({
   width = "100%",
   height = "auto",
   display = "flex",
@@ -29,7 +29,7 @@ export const Wrapper = ({
   justifyContent = "center",
   alignItems = "center",
   children,
-}: WrapperProps) => {
+}: LayoutWrapperProps) => {
   const styleValue = assignInlineVars({
     [wrapperWidth]: width,
     [wrapperHeight]: height,
@@ -40,8 +40,10 @@ export const Wrapper = ({
   });
 
   return (
-    <div className={WrapperStyle} style={styleValue}>
+    <div className={LayoutWrapperStyle} style={styleValue}>
       {children}
     </div>
   );
 };
+
+export default LayoutWrapper;

@@ -12,8 +12,15 @@ import SideMenuList from "./SideMenuList";
 import TodoListItem from "./TodoListItem";
 import MenuItem from "./MenuItem";
 import UserInfo from "./UserInfo";
+import { Dispatch } from "react";
 
-const Sidebar = () => {
+import todoListData from "@/app/data/todoList.json";
+
+interface SidebarProps {
+  setSelectedTodo: Dispatch<React.SetStateAction<string>>;
+}
+
+const Sidebar = ({ setSelectedTodo }: SidebarProps) => {
   const menuItems = [
     {
       key: "calendar",
@@ -35,20 +42,7 @@ const Sidebar = () => {
     },
   ];
 
-  const todoListItems = [
-    {
-      name: "일상",
-      color: "#9994D0",
-    },
-    {
-      name: "업무",
-      color: "#80B99D",
-    },
-    {
-      name: "약속",
-      color: "#E6A4D5",
-    },
-  ];
+  const todoList = todoListData;
 
   return (
     <aside className={SidebarStyle}>
@@ -56,8 +50,12 @@ const Sidebar = () => {
         <Logo color="white" margin="0 0 25px" />
         <nav className={SidebarMenuStyle}>
           <SideMenuList title="할 일 목록">
-            {todoListItems.map((item) => (
-              <TodoListItem key={item.name} item={item} />
+            {todoList.map((item) => (
+              <TodoListItem
+                key={item.name}
+                item={item}
+                setSelectedTodo={setSelectedTodo}
+              />
             ))}
           </SideMenuList>
 

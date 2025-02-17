@@ -1,6 +1,6 @@
-import AccountRecoveryLink from "../AccountRecoveryLink";
-import Button from "../Button";
-import Logo from "../Logo";
+import AccountRecoveryLink from "../../common/AccountRecoveryLink";
+import Button from "../../common/Button";
+import Logo from "../../common/Logo";
 import {
   AuthButtonStyle,
   AuthFormWrapperStyle,

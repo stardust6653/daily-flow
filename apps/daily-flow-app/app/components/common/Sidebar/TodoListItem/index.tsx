@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import {
   TodoListItemColorChipStyle,
   TodoListItemStyle,
@@ -8,11 +9,16 @@ interface TodoListItemProps {
     name: string;
     color: string;
   };
+  setSelectedTodo: Dispatch<React.SetStateAction<string>>;
 }
 
-const TodoListItem = ({ item }: TodoListItemProps) => {
+const TodoListItem = ({ item, setSelectedTodo }: TodoListItemProps) => {
+  const handleClick = () => {
+    setSelectedTodo(item.name);
+  };
+
   return (
-    <li className={TodoListItemStyle} key={item.name}>
+    <li className={TodoListItemStyle} key={item.name} onClick={handleClick}>
       <span
         className={TodoListItemColorChipStyle}
         style={{ backgroundColor: item.color }}

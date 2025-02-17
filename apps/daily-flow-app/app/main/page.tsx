@@ -1,10 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Sidebar from "../components/common/Sidebar";
+import MainSection from "../components/main/MainSection";
+import PageWrapper from "../components/layout/PageWrapper";
 
 const MainPage = () => {
+  const [selectedTodo, setSelectedTodo] = useState("일상");
+
+  console.log(selectedTodo);
+
   return (
-    <>
-      <Sidebar />
-    </>
+    <PageWrapper>
+      <Sidebar setSelectedTodo={setSelectedTodo} />
+      <MainSection selectedTodo={selectedTodo} />
+    </PageWrapper>
   );
 };
 

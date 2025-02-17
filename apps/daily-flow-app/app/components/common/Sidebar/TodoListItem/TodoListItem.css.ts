@@ -13,6 +13,7 @@ export const TodoListItemColorChipStyle = style({
 });
 
 export const TodoListItemStyle = style({
+  cursor: "pointer",
   display: "flex",
   alignItems: "center",
   fontWeight: 400,

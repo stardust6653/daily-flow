@@ -1,11 +1,11 @@
 import Banner from "../../components/common/Banner";
-import { Wrapper } from "../../components/common/Wrapper";
+import LayoutWrapper from "../../components/layout/LayoutWrapper";
 import VerifyEmailForm from "../../components/forgot-password/VerifyEmailForm";
 import AuthWrapper from "../../components/home/AuthWrapper";
 
 const ForgotPasswordPage = () => {
   return (
-    <Wrapper flexDirection="center" alignItems="center" height="100vh">
+    <LayoutWrapper flexDirection="center" alignItems="center" height="100vh">
       <AuthWrapper>
         <VerifyEmailForm />
         <Banner
@@ -16,7 +16,7 @@ const ForgotPasswordPage = () => {
           buttonType="white"
         />
       </AuthWrapper>
-    </Wrapper>
+    </LayoutWrapper>
   );
 };
 

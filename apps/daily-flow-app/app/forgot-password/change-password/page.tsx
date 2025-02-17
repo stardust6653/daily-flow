@@ -1,11 +1,11 @@
 import Banner from "@/app/components/common/Banner";
-import { Wrapper } from "@/app/components/common/Wrapper";
+import LayoutWrapper from "@/app/components/layout/LayoutWrapper";
 import ChangePasswordForm from "@/app/components/forgot-password/ChangePasswordForm";
 import AuthWrapper from "@/app/components/home/AuthWrapper";
 
 const ChangePasswordPage = () => {
   return (
-    <Wrapper flexDirection="center" alignItems="center" height="100vh">
+    <LayoutWrapper flexDirection="center" alignItems="center" height="100vh">
       <AuthWrapper>
         <ChangePasswordForm />
         <Banner
@@ -16,7 +16,7 @@ const ChangePasswordPage = () => {
           buttonType="white"
         />
       </AuthWrapper>
-    </Wrapper>
+    </LayoutWrapper>
   );
 };
 

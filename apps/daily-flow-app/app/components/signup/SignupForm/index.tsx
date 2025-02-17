@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Input from "@/app/components/common/Input";
 
-import AuthFormWrapper from "../../common/AuthFormWrapper";
+import AuthFormWrapper from "../../layout/AuthFormWrapper";
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
