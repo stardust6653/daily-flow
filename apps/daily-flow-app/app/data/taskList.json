@@ -2,7 +2,7 @@
   {
     "name": "일상",
     "color": "#9994D0",
-    "todos": [
+    "tasks": [
       {
         "label": "진행 전",
         "color": "#9681FF",

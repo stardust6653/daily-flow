@@ -1,4 +1,4 @@
-import { TodoItemType, TodoListType } from "@/types/todo";
+import { TaskItemType, TaskListType } from "@/types/task";
 import {
   MainTaskContentStyle,
   MemoStyle,
@@ -7,12 +7,12 @@ import {
 } from "./TaskContent.css";
 
 interface TaskContentProps {
-  data: TodoListType;
-  item: TodoItemType;
+  data: TaskListType;
+  item: TaskItemType;
 }
 
 const TaskContent = ({ item, data }: TaskContentProps) => {
-  const completeColor = (item: TodoItemType) => {
+  const completeColor = (item: TaskItemType) => {
     if (item.complete && data?.color) {
       return data.color;
     }

@@ -1,8 +1,8 @@
-import { TodoListType } from "@/types/todo";
+import { TaskListType } from "@/types/task";
 import { SubTaskMarkStyle } from "./SubTaskMark.css";
 
 interface SubTaskMarkProps {
-  data: TodoListType;
+  data: TaskListType;
 }
 
 const SubTaskMark = ({ data }: SubTaskMarkProps) => {

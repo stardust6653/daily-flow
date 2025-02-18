@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-export const TodoStyle = style({
+export const TaskStyle = style({
   position: "relative",
   display: "flex",
   flexDirection: "column",

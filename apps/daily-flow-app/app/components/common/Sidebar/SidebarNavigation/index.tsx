@@ -3,24 +3,24 @@ import SideMenuList from "../SideMenuList";
 import TodoListItem from "../TodoListItem";
 import MenuItem from "../MenuItem";
 import { SidebarNavigationStyle } from "./SidebarNavigation.css";
-import todoListData from "@/app/data/todoList.json";
+import taskListData from "@/app/data/taskList.json";
 import { Dispatch } from "react";
 
 interface SidebarProps {
-  setSelectedTodo: Dispatch<React.SetStateAction<string>>;
+  setSelectedTask: Dispatch<React.SetStateAction<string>>;
 }
 
-const SidebarNavigation = ({ setSelectedTodo }: SidebarProps) => {
-  const todoList = todoListData;
+const SidebarNavigation = ({ setSelectedTask }: SidebarProps) => {
+  const taskList = taskListData;
 
   return (
     <nav className={SidebarNavigationStyle}>
       <SideMenuList title="할 일 목록">
-        {todoList.map((item) => (
+        {taskList.map((item) => (
           <TodoListItem
             key={item.name}
             item={item}
-            setSelectedTodo={setSelectedTodo}
+            setSelectedTask={setSelectedTask}
           />
         ))}
       </SideMenuList>

@@ -1,4 +1,4 @@
-import todoList from "@/app/data/todoList.json";
+import taskList from "@/app/data/taskList.json";
 import MainTitle from "../MainTitle";
 import {
   MainSectionAddButtonStyle,
@@ -6,22 +6,22 @@ import {
   MainSectionListStyle,
   MainSectionStyle,
 } from "./MainSection.css";
-import TodoList from "../TodoList";
 import { MdAddCircleOutline } from "react-icons/md";
+import TaskList from "../TaskList";
 
 interface MainSectionProps {
-  selectedTodo: string;
+  selectedTask: string;
 }
 
-const MainSection = ({ selectedTodo }: MainSectionProps) => {
-  const selectedTodoData = todoList.find((item) => item.name === selectedTodo);
+const MainSection = ({ selectedTask }: MainSectionProps) => {
+  const selectedTaskData = taskList.find((item) => item.name === selectedTask);
 
   return (
     <section className={MainSectionStyle}>
-      {selectedTodoData && <MainTitle data={selectedTodoData} />}
+      {selectedTaskData && <MainTitle data={selectedTaskData} />}
       <div className={MainSectionListStyle}>
-        {selectedTodoData?.todos?.map((todo) => (
-          <TodoList data={todo} key={todo.label} />
+        {selectedTaskData?.tasks?.map((task) => (
+          <TaskList data={task} key={task.label} />
         ))}
 
         <div className={MainSectionAddListStyle}>
