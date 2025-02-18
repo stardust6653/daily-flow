@@ -4,6 +4,7 @@ import {
   AddSubTaskStyle,
   EmptySubTaskStyle,
   EraseButtonStyle,
+  SubTaskContentStyle,
   SubTaskItemStyle,
 } from "./AddSubTask.css";
 import { InputTitleStyle } from "../AddTaskModal.css";
@@ -67,7 +68,7 @@ const AddSubTask = () => {
         .map((task, index) => {
           return (
             <div key={index} className={SubTaskItemStyle}>
-              <p>- {task.task}</p>
+              <p className={SubTaskContentStyle}>- {task.task}</p>
               <p
                 className={EraseButtonStyle}
                 onClick={() => handleEraseClick(task.id)}

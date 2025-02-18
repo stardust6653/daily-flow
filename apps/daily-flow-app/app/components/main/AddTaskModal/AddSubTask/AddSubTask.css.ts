@@ -23,6 +23,10 @@ export const SubTaskItemStyle = style({
   marginBottom: themeVars.space.sm,
 });
 
+export const SubTaskContentStyle = style({
+  fontSize: themeVars.fontSizes.sm,
+});
+
 export const EraseButtonStyle = style({
   cursor: "pointer",
   fontSize: themeVars.fontSizes.sm,
