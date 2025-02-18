@@ -8,8 +8,6 @@ import PageWrapper from "../components/layout/PageWrapper";
 const MainPage = () => {
   const [selectedTodo, setSelectedTodo] = useState("일상");
 
-  console.log(selectedTodo);
-
   return (
     <PageWrapper>
       <Sidebar setSelectedTodo={setSelectedTodo} />
