@@ -23,10 +23,10 @@ import taskList from "@/app/data/taskList.json";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 interface SetOptionProps {
-  selectedTask: string;
+  selectedCategory: string;
 }
 
-const SetOption = ({ selectedTask }: SetOptionProps) => {
+const SetOption = ({ selectedCategory }: SetOptionProps) => {
   const [isSchedule, setIsSchedule] = useState(false);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState({
@@ -36,7 +36,9 @@ const SetOption = ({ selectedTask }: SetOptionProps) => {
 
   const handleToggleClick = () => setIsSchedule(!isSchedule);
 
-  const taskListData = taskList.filter((task) => task.name === selectedTask);
+  const taskListData = taskList.filter(
+    (task) => task.name === selectedCategory
+  );
 
   console.log(taskListData);
 

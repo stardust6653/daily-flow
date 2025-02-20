@@ -9,12 +9,12 @@ interface TodoListItemProps {
     name: string;
     color: string;
   };
-  setSelectedTask: Dispatch<React.SetStateAction<string>>;
+  setSelectedCategory: Dispatch<React.SetStateAction<string>>;
 }
 
-const TodoListItem = ({ item, setSelectedTask }: TodoListItemProps) => {
+const TodoListItem = ({ item, setSelectedCategory }: TodoListItemProps) => {
   const handleClick = () => {
-    setSelectedTask(item.name);
+    setSelectedCategory(item.name);
   };
 
   return (

@@ -7,15 +7,15 @@ import { Dispatch } from "react";
 import SidebarNavigation from "./SidebarNavigation";
 
 interface SidebarProps {
-  setSelectedTask: Dispatch<React.SetStateAction<string>>;
+  setSelectedCategory: Dispatch<React.SetStateAction<string>>;
 }
 
-const Sidebar = ({ setSelectedTask }: SidebarProps) => {
+const Sidebar = ({ setSelectedCategory }: SidebarProps) => {
   return (
     <aside className={SidebarStyle}>
       <div className={SidebarMenuWrapperStyle}>
         <Logo color="white" margin="0 0 25px" />
-        <SidebarNavigation setSelectedTask={setSelectedTask} />
+        <SidebarNavigation setSelectedCategory={setSelectedCategory} />
       </div>
       <UserInfo />
     </aside>

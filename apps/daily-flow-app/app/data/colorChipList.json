@@ -1,0 +1,84 @@
+{
+  "palettes": [
+    {
+      "main_color": "#9681FF",
+      "sub_color": "#F0F1FF"
+    },
+    {
+      "main_color": "#FF8183",
+      "sub_color": "#FFF0F4"
+    },
+    {
+      "main_color": "#67CF86",
+      "sub_color": "#F0FFF6"
+    },
+    {
+      "main_color": "#FF9A3D",
+      "sub_color": "#FFF4E8"
+    },
+    {
+      "main_color": "#3DCFDD",
+      "sub_color": "#EBFCFF"
+    },
+    {
+      "main_color": "#FF4BA0",
+      "sub_color": "#FFF0F7"
+    },
+    {
+      "main_color": "#5B4DFF",
+      "sub_color": "#EDEEFF"
+    },
+    {
+      "main_color": "#45B6FF",
+      "sub_color": "#EBF8FF"
+    },
+    {
+      "main_color": "#FF6B4D",
+      "sub_color": "#FFF1EE"
+    },
+    {
+      "main_color": "#4DC8A0",
+      "sub_color": "#EBFFF7"
+    },
+    {
+      "main_color": "#C74DFF",
+      "sub_color": "#FAF0FF"
+    },
+    {
+      "main_color": "#FFB627",
+      "sub_color": "#FFF8EB"
+    },
+    {
+      "main_color": "#4D7BFF",
+      "sub_color": "#EEF2FF"
+    },
+    {
+      "main_color": "#FF4D73",
+      "sub_color": "#FFF0F3"
+    },
+    {
+      "main_color": "#27DDCF",
+      "sub_color": "#EBFFFC"
+    },
+    {
+      "main_color": "#B44DFF",
+      "sub_color": "#F8F0FF"
+    },
+    {
+      "main_color": "#38CD54",
+      "sub_color": "#ECFFE0"
+    },
+    {
+      "main_color": "#FF8C27",
+      "sub_color": "#FFF4EB"
+    },
+    {
+      "main_color": "#4D4DFF",
+      "sub_color": "#EDEDFF"
+    },
+    {
+      "main_color": "#FF4DA6",
+      "sub_color": "#FFF0F8"
+    }
+  ]
+}

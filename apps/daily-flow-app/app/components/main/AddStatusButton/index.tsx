@@ -3,10 +3,18 @@ import {
   AddStatusButtonStyle,
   AddStatusButtonWrapperStyle,
 } from "./AddStatusButton.css";
+import { Dispatch, SetStateAction } from "react";
 
-const AddStatusButton = () => {
+interface AddStatusButtonProps {
+  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+}
+
+const AddStatusButton = ({ setIsModalOpen }: AddStatusButtonProps) => {
   return (
-    <div className={AddStatusButtonWrapperStyle}>
+    <div
+      className={AddStatusButtonWrapperStyle}
+      onClick={() => setIsModalOpen({ isOpen: true, type: "addStatus" })}
+    >
       <label className={AddStatusButtonStyle}>
         <MdAddCircleOutline />
       </label>

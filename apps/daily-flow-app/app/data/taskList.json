@@ -14,7 +14,7 @@
             "main_task": "메인 태스크",
             "sub_task": ["서브 태스크1", "서브 태스크2"],
             "memo": "테스트 데이터 입니다.",
-            "type": "todo",
+            "type": "task",
             "period": "",
             "complete": false
           }
@@ -43,7 +43,7 @@
             "main_task": "메인 태스크",
             "sub_task": [],
             "memo": "테스트 데이터 입니다.",
-            "type": "todo",
+            "type": "task",
             "period": "",
             "complete": false
           }
@@ -61,7 +61,7 @@
             "main_task": "메인 태스크",
             "sub_task": ["서브 태스크1", "서브 태스크2"],
             "memo": "테스트 데이터 입니다.",
-            "type": "todo",
+            "type": "task",
             "period": "",
             "complete": true
           }

@@ -14,11 +14,14 @@ import AddMemo from "./AddMemo";
 import SetOption from "./SetOption";
 
 interface AddTaskModalProps {
-  selectedTask: string;
+  selectedCategory: string;
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
-const AddTaskModal = ({ selectedTask, setIsModalOpen }: AddTaskModalProps) => {
+const AddTaskModal = ({
+  selectedCategory,
+  setIsModalOpen,
+}: AddTaskModalProps) => {
   const handleCloseClick = () =>
     setIsModalOpen({
       isOpen: false,
@@ -37,7 +40,7 @@ const AddTaskModal = ({ selectedTask, setIsModalOpen }: AddTaskModalProps) => {
         <div className={AddWrapperStyle}>
           <AddSubTask />
           <AddMemo />
-          <SetOption selectedTask={selectedTask} />
+          <SetOption selectedCategory={selectedCategory} />
         </div>
       </div>
 

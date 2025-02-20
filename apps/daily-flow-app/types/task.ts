@@ -5,14 +5,14 @@ export interface TaskDataType {
 export interface TaskListDataType {
   name: string;
   color: string;
-  tasks: TaskListType[];
+  tasks?: TaskListType[];
 }
 
 export interface TaskListType {
   label: string;
   color: string;
   sub_color: string;
-  items?: TaskItemType[];
+  items: TaskItemType[];
 }
 
 export interface TaskItemType {

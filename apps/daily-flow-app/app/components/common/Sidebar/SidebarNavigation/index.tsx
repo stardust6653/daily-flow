@@ -7,10 +7,10 @@ import taskListData from "@/app/data/taskList.json";
 import { Dispatch } from "react";
 
 interface SidebarProps {
-  setSelectedTask: Dispatch<React.SetStateAction<string>>;
+  setSelectedCategory: Dispatch<React.SetStateAction<string>>;
 }
 
-const SidebarNavigation = ({ setSelectedTask }: SidebarProps) => {
+const SidebarNavigation = ({ setSelectedCategory }: SidebarProps) => {
   const taskList = taskListData;
 
   return (
@@ -20,7 +20,7 @@ const SidebarNavigation = ({ setSelectedTask }: SidebarProps) => {
           <TodoListItem
             key={item.name}
             item={item}
-            setSelectedTask={setSelectedTask}
+            setSelectedCategory={setSelectedCategory}
           />
         ))}
       </SideMenuList>

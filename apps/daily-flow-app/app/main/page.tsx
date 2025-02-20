@@ -6,9 +6,10 @@ import MainSection from "../components/main/MainSection";
 import PageWrapper from "../components/layout/PageWrapper";
 import Modal from "../components/common/Modal";
 import AddTaskModal from "../components/main/AddTaskModal";
+import AddStatusModal from "../components/main/AddStatusModal";
 
 const MainPage = () => {
-  const [selectedTask, setSelectedTask] = useState("일상");
+  const [selectedCategory, setSelectedCategory] = useState("일상");
   const [isModalOpen, setIsModalOpen] = useState({
     isOpen: false,
     type: "",
@@ -16,16 +17,25 @@ const MainPage = () => {
 
   return (
     <PageWrapper>
-      <Sidebar setSelectedTask={setSelectedTask} />
+      <Sidebar setSelectedCategory={setSelectedCategory} />
       <MainSection
-        selectedTask={selectedTask}
+        selectedCategory={selectedCategory}
         setIsModalOpen={setIsModalOpen}
       />
       {isModalOpen.type === "addTask" && isModalOpen.isOpen && (
         <Modal size="large">
           <AddTaskModal
             setIsModalOpen={setIsModalOpen}
-            selectedTask={selectedTask}
+            selectedCategory={selectedCategory}
+          />
+        </Modal>
+      )}
+
+      {isModalOpen.type === "addStatus" && isModalOpen.isOpen && (
+        <Modal size="large">
+          <AddStatusModal
+            setIsModalOpen={setIsModalOpen}
+            selectedCategory={selectedCategory}
           />
         </Modal>
       )}
