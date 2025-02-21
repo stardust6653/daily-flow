@@ -15,11 +15,16 @@ export interface TaskListType {
   items: TaskItemType[];
 }
 
+export interface SubTaskType {
+  task: string;
+  complete: boolean;
+}
+
 export interface TaskItemType {
   created_at: string;
   id: string;
   main_task: string;
-  sub_task: string[];
+  sub_task: SubTaskType[];
   memo: string;
   type: "task" | "calendar" | string;
   period: string;

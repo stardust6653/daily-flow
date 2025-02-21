@@ -43,8 +43,6 @@ const AddSubTask = () => {
     setSubTasks(subTasks.filter((task) => task.id !== id));
   };
 
-  console.log(subTasks);
-
   return (
     <div className={AddSubTaskStyle}>
       <p className={InputTitleStyle}>서브 태스크</p>

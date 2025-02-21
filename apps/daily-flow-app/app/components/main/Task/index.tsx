@@ -5,6 +5,7 @@ import { TaskStyle } from "./Task.css";
 import { TaskItemType, TaskListType } from "@/types/task";
 import AddExpenditure from "../AddExpenditure";
 import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
 
 interface TaskProps {
   data: TaskListType;
@@ -13,11 +14,21 @@ interface TaskProps {
 }
 
 const Task = ({ data, item, setIsModalOpen }: TaskProps) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(
+      `/main?status=${data.label}&task=${item.main_task}&id=${item.id}`
+    );
+    setIsModalOpen({ isOpen: true, type: "detail" });
+  };
+
   return (
     <div
       className={TaskStyle}
       key={item.id}
       style={{ backgroundColor: data?.sub_color }}
+      onClick={handleClick}
     >
       <TaskContent data={data} item={item} />
       {item.complete && (

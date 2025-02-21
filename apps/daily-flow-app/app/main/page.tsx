@@ -9,6 +9,7 @@ import AddTaskModal from "../components/main/AddTaskModal";
 import AddStatusModal from "../components/main/AddStatusModal";
 import AddExpenditureModal from "../components/main/AddExpenditureModal";
 import AddCategoryModal from "../components/common/Sidebar/AddCategoryModal";
+import DetailModal from "../components/main/DetailModal";
 
 const MainPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("일상");
@@ -54,6 +55,15 @@ const MainPage = () => {
       {isModalOpen.type === "addCategory" && isModalOpen.isOpen && (
         <Modal size="small">
           <AddCategoryModal setIsModalOpen={setIsModalOpen} />
+        </Modal>
+      )}
+
+      {isModalOpen.type === "detail" && isModalOpen.isOpen && (
+        <Modal size="large">
+          <DetailModal
+            setIsModalOpen={setIsModalOpen}
+            selectedCategory={selectedCategory}
+          />
         </Modal>
       )}
     </PageWrapper>

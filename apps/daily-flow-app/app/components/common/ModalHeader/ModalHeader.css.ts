@@ -2,6 +2,7 @@ import { themeVars } from "@/app/styles/theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const ModalHeaderStyle = style({
+  width: "100%",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",

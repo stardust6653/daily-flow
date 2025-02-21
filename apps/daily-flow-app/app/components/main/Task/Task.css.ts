@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css";
 
 export const TaskStyle = style({
+  cursor: "pointer",
   position: "relative",
   display: "flex",
   flexDirection: "column",

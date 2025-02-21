@@ -40,8 +40,6 @@ const SetOption = ({ selectedCategory }: SetOptionProps) => {
     (task) => task.name === selectedCategory
   );
 
-  console.log(taskListData);
-
   const OptionColor = (type: "task" | "schedule") => {
     if (type === "task") {
       return isSchedule
