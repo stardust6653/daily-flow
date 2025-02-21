@@ -64,6 +64,17 @@
             "type": "task",
             "period": "",
             "complete": true
+          },
+          {
+            "created_at": "2025-02-17T00:00:00",
+            "id": "2",
+            "main_task": "메인 완료 태스크 2",
+            "sub_task": ["서브 태스크1", "서브 태스크2"],
+            "memo": "테스트 데이터 입니다.",
+            "type": "task",
+            "period": "",
+            "complete": true,
+            "expenditure": 0
           }
         ]
       }

@@ -13,16 +13,28 @@ export const ModalWrapperStyle = style({
   left: 0,
 });
 
-export const SmallModalStyle = style({});
-
-export const MediumModalStyle = style({});
-
-export const LargeModalStyle = style({
-  width: "768px",
-  height: "480px",
+const modalStyle = style({
   borderRadius: themeVars.radii.md,
   backgroundColor: themeVars.colors.base.white,
   boxShadow: themeVars.shadows.md,
   padding: "20px",
   boxSizing: "border-box",
 });
+
+export const SmallModalStyle = style([
+  modalStyle,
+  {
+    width: "300px",
+    height: "200px",
+  },
+]);
+
+export const MediumModalStyle = style({});
+
+export const LargeModalStyle = style([
+  modalStyle,
+  {
+    width: "768px",
+    height: "480px",
+  },
+]);

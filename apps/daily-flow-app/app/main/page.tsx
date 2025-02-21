@@ -7,6 +7,7 @@ import PageWrapper from "../components/layout/PageWrapper";
 import Modal from "../components/common/Modal";
 import AddTaskModal from "../components/main/AddTaskModal";
 import AddStatusModal from "../components/main/AddStatusModal";
+import AddExpenditureModal from "../components/main/AddExpenditureModal";
 
 const MainPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("일상");
@@ -17,7 +18,10 @@ const MainPage = () => {
 
   return (
     <PageWrapper>
-      <Sidebar setSelectedCategory={setSelectedCategory} />
+      <Sidebar
+        setSelectedCategory={setSelectedCategory}
+        setIsModalOpen={setIsModalOpen}
+      />
       <MainSection
         selectedCategory={selectedCategory}
         setIsModalOpen={setIsModalOpen}
@@ -37,6 +41,18 @@ const MainPage = () => {
             setIsModalOpen={setIsModalOpen}
             selectedCategory={selectedCategory}
           />
+        </Modal>
+      )}
+
+      {isModalOpen.type === "addExpenditure" && isModalOpen.isOpen && (
+        <Modal size="small">
+          <AddExpenditureModal setIsModalOpen={setIsModalOpen} />
+        </Modal>
+      )}
+
+      {isModalOpen.type === "addCategory" && isModalOpen.isOpen && (
+        <Modal size="small">
+          <AddExpenditureModal setIsModalOpen={setIsModalOpen} />
         </Modal>
       )}
     </PageWrapper>

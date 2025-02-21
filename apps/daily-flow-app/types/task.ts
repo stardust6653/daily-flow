@@ -24,4 +24,5 @@ export interface TaskItemType {
   type: "task" | "calendar" | string;
   period: string;
   complete: boolean;
+  expenditure?: number;
 }

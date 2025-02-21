@@ -16,7 +16,12 @@ const TaskList = ({ data, setIsModalOpen }: TaskListProps) => {
     <div className={TaskListStyle}>
       <StatusLabel data={data} />
       {data.items?.map((item) => (
-        <Task data={data} item={item} key={item.id} />
+        <Task
+          data={data}
+          item={item}
+          key={item.id}
+          setIsModalOpen={setIsModalOpen}
+        />
       ))}
       <AddTaskButton setIsModalOpen={setIsModalOpen} />
     </div>

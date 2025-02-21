@@ -2,20 +2,24 @@ import Logo from "../Logo";
 import { SidebarMenuWrapperStyle, SidebarStyle } from "./Sidebar.css";
 
 import UserInfo from "./UserInfo";
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import SidebarNavigation from "./SidebarNavigation";
 
 interface SidebarProps {
-  setSelectedCategory: Dispatch<React.SetStateAction<string>>;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
+  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
-const Sidebar = ({ setSelectedCategory }: SidebarProps) => {
+const Sidebar = ({ setSelectedCategory, setIsModalOpen }: SidebarProps) => {
   return (
     <aside className={SidebarStyle}>
       <div className={SidebarMenuWrapperStyle}>
         <Logo color="white" margin="0 0 25px" />
-        <SidebarNavigation setSelectedCategory={setSelectedCategory} />
+        <SidebarNavigation
+          setSelectedCategory={setSelectedCategory}
+          setIsModalOpen={setIsModalOpen}
+        />
       </div>
       <UserInfo />
     </aside>

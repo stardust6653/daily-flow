@@ -4,13 +4,18 @@ import TodoListItem from "../TodoListItem";
 import MenuItem from "../MenuItem";
 import { SidebarNavigationStyle } from "./SidebarNavigation.css";
 import taskListData from "@/app/data/taskList.json";
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
+import AddCategory from "../AddCategory";
 
 interface SidebarProps {
-  setSelectedCategory: Dispatch<React.SetStateAction<string>>;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
+  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
-const SidebarNavigation = ({ setSelectedCategory }: SidebarProps) => {
+const SidebarNavigation = ({
+  setSelectedCategory,
+  setIsModalOpen,
+}: SidebarProps) => {
   const taskList = taskListData;
 
   return (
@@ -23,6 +28,7 @@ const SidebarNavigation = ({ setSelectedCategory }: SidebarProps) => {
             setSelectedCategory={setSelectedCategory}
           />
         ))}
+        <AddCategory setIsModalOpen={setIsModalOpen} />
       </SideMenuList>
 
       <SideMenuList title="메뉴">
