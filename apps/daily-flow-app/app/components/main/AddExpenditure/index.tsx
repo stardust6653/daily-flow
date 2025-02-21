@@ -15,7 +15,8 @@ const AddExpenditure = ({ item, setIsModalOpen }: AddExpenditureProps) => {
       <p>{item.expenditure}원</p>
     );
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsModalOpen({ isOpen: true, type: "addExpenditure" });
   };
 
