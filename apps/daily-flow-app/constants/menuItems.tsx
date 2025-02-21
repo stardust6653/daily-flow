@@ -1,8 +1,9 @@
 // constants/menuItems.ts
+
 import {
-  SidebarMenuItemIconStyle,
-  SidebarMenuItemStyle,
-} from "@/app/components/common/Sidebar/Sidebar.css";
+  SideMenuIconStyle,
+  SideMenuItemStyle,
+} from "@/app/components/common/Sidebar/SideMenuList/SideMenuList.css";
 import { CiCalendar } from "react-icons/ci";
 import { IoAnalytics } from "react-icons/io5";
 
@@ -10,8 +11,8 @@ export const MENU_ITEMS = [
   {
     key: "calendar",
     element: (
-      <span className={SidebarMenuItemStyle}>
-        <CiCalendar className={SidebarMenuItemIconStyle} /> 캘린더
+      <span className={SideMenuItemStyle}>
+        <CiCalendar className={SideMenuIconStyle} /> 캘린더
       </span>
     ),
     href: "/calendar",
@@ -19,8 +20,8 @@ export const MENU_ITEMS = [
   {
     key: "analysis",
     element: (
-      <span className={SidebarMenuItemStyle}>
-        <IoAnalytics className={SidebarMenuItemIconStyle} /> 분석
+      <span className={SideMenuItemStyle}>
+        <IoAnalytics className={SideMenuIconStyle} /> 분석
       </span>
     ),
     href: "/analysis",
