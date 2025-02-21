@@ -11,11 +11,11 @@ interface AddStatusButtonProps {
 
 const AddStatusButton = ({ setIsModalOpen }: AddStatusButtonProps) => {
   return (
-    <div
-      className={AddStatusButtonWrapperStyle}
-      onClick={() => setIsModalOpen({ isOpen: true, type: "addStatus" })}
-    >
-      <label className={AddStatusButtonStyle}>
+    <div className={AddStatusButtonWrapperStyle}>
+      <label
+        className={AddStatusButtonStyle}
+        onClick={() => setIsModalOpen({ isOpen: true, type: "addStatus" })}
+      >
         <MdAddCircleOutline />
       </label>
     </div>
