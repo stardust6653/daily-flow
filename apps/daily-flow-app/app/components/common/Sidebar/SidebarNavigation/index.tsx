@@ -3,25 +3,25 @@ import SideMenuList from "../SideMenuList";
 import TodoListItem from "../TodoListItem";
 import MenuItem from "../MenuItem";
 import { SidebarNavigationStyle } from "./SidebarNavigation.css";
-import taskListData from "@/app/data/taskList.json";
 import { Dispatch, SetStateAction } from "react";
 import AddCategory from "../AddCategory";
+import { CategoryType } from "@/types/types";
 
 interface SidebarProps {
   setSelectedCategory: Dispatch<SetStateAction<string>>;
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  categories: CategoryType[];
 }
 
 const SidebarNavigation = ({
   setSelectedCategory,
   setIsModalOpen,
+  categories,
 }: SidebarProps) => {
-  const taskList = taskListData;
-
   return (
     <nav className={SidebarNavigationStyle}>
       <SideMenuList title="할 일 목록">
-        {taskList.map((item) => (
+        {categories.map((item) => (
           <TodoListItem
             key={item.name}
             item={item}

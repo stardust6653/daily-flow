@@ -1,3 +1,5 @@
+"use client";
+
 import Banner from "./components/common/Banner";
 import LayoutWrapper from "./components/layout/LayoutWrapper";
 import AuthForm from "./components/home/AuthForm";

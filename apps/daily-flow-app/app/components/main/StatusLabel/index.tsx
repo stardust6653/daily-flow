@@ -1,8 +1,9 @@
 import { TaskListType } from "@/types/task";
 import { ListLengthStyle, StatusLabelStyle } from "./StatusLabel.css";
+import { TaskStatusType } from "@/types/types";
 
 interface StatusLabelProps {
-  data: TaskListType;
+  data: TaskStatusType;
 }
 
 const StatusLabel = ({ data }: StatusLabelProps) => {

@@ -1,9 +1,9 @@
-import { TaskItemType } from "@/types/task";
 import { AddExpenditureStyle } from "./AddExpenditure.css";
 import { Dispatch, SetStateAction } from "react";
+import { TaskType } from "@/types/types";
 
 interface AddExpenditureProps {
-  item: TaskItemType;
+  item: TaskType;
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 

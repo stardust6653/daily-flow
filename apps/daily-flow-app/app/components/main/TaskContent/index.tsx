@@ -1,18 +1,18 @@
-import { TaskItemType, TaskListType } from "@/types/task";
 import {
   MainTaskContentStyle,
   MemoStyle,
   TaskButtonStyle,
   TaskContentStyle,
 } from "./TaskContent.css";
+import { TaskStatusType, TaskType } from "@/types/types";
 
 interface TaskContentProps {
-  data: TaskListType;
-  item: TaskItemType;
+  data: TaskStatusType;
+  item: TaskType;
 }
 
 const TaskContent = ({ item, data }: TaskContentProps) => {
-  const completeColor = (item: TaskItemType) => {
+  const completeColor = (item: TaskType) => {
     if (item.complete && data?.color) {
       return data.color;
     }

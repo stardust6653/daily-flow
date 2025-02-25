@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import ModalHeader from "../../common/ModalHeader";
 import { useSearchParams } from "next/navigation";
-import taskListData from "@/app/data/taskList.json";
 import {
   ColorChipStyle,
   DetailModalColorStyle,
@@ -23,26 +22,28 @@ import { LuCircleCheckBig } from "react-icons/lu";
 import { BsCalendarCheck } from "react-icons/bs";
 import { FaTasks } from "react-icons/fa";
 import { CiMemoPad } from "react-icons/ci";
+import { TaskStatusType, TaskType } from "@/types/types";
 
 interface DetailModalProps {
-  selectedCategory: string;
+  tasks: TaskType[];
+  taskStatuses: TaskStatusType[];
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
 const DetailModal = ({
   setIsModalOpen,
-  selectedCategory,
+  taskStatuses,
+  tasks,
 }: DetailModalProps) => {
   const searchParams = useSearchParams();
-  const task = searchParams.get("task");
-  const status = searchParams.get("status");
   const id = searchParams.get("id");
+  const task = tasks.find((item) => item.id === id);
 
-  const category = taskListData.find((item) => item.name === selectedCategory);
-  const label = category?.tasks?.find((item) => item.label === status);
-  const item = label?.items?.find((item) => item.id === id);
+  const label = taskStatuses.find(
+    (item) => item.id === task?.status_id
+  ) as TaskStatusType;
 
-  console.log(item);
+  console.log(task);
 
   return (
     <div className={DetailModalStyle}>
@@ -52,7 +53,7 @@ const DetailModal = ({
           style={{ backgroundColor: label?.color }}
         />
         <ModalHeader
-          title={task as string}
+          title={task?.main_task as string}
           handleCloseClick={() =>
             setIsModalOpen({ isOpen: false, type: "detail" })
           }
@@ -80,7 +81,7 @@ const DetailModal = ({
             <span>일정</span>
           </p>
           <div className={OptionContentStyle}>
-            {item?.type === "calendar" ? item?.period : "할 일"}
+            {task?.type === "calendar" ? task?.period : "할 일"}
           </div>
         </div>
 
@@ -90,10 +91,10 @@ const DetailModal = ({
             <span>서브 태스크</span>
           </p>
           <ul className={SubTaskStyle}>
-            {item?.sub_task?.length === 0 ? (
+            {task?.subtasks?.length === 0 ? (
               <li>비어있음</li>
             ) : (
-              item?.sub_task?.map((task, index) => (
+              task?.subtasks?.map((task, index) => (
                 <li className={SubTaskContentStyle} key={index}>
                   <div
                     className={
@@ -122,7 +123,7 @@ const DetailModal = ({
             <CiMemoPad className={OptionIconStyle} />
             <span>메모</span>
           </p>
-          <p className={OptionContentStyle}>{item?.memo}</p>
+          <p className={OptionContentStyle}>{task?.memo}</p>
         </div>
       </div>
     </div>

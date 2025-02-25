@@ -1,17 +1,32 @@
+// src/components/auth/AuthForm.tsx
 "use client";
 
 import { useState } from "react";
 import Input from "../../common/Input";
 import AuthFormWrapper from "../../layout/AuthFormWrapper";
 import { useRouter } from "next/navigation";
+import api from "@/app/api/axios";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
-
-  console.log(email);
-
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
   const router = useRouter();
-  const onClick = () => router.push("/main");
+
+  const onClick = async () => {
+    try {
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
+      console.log("Login response:", response.data); // 로그인 응답 확인
+      login(response.data.access_token);
+      router.push("/main");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   return (
     <AuthFormWrapper onClick={onClick} type="signin">
@@ -22,7 +37,7 @@ const AuthForm: React.FC = () => {
         type="email"
       />
       <Input
-        setValue={setEmail}
+        setValue={setPassword}
         errorMessage=""
         placeholder="Password"
         type="password"
@@ -30,4 +45,5 @@ const AuthForm: React.FC = () => {
     </AuthFormWrapper>
   );
 };
+
 export default AuthForm;

@@ -1,5 +1,5 @@
-import { TaskItemType } from "@/types/task";
 import { TaskTypeStyle } from "./TaskType.css";
+import { TaskType as TaskItemType } from "@/types/types";
 
 interface TaskTypeProps {
   item: TaskItemType;

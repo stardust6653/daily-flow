@@ -1,10 +1,8 @@
+import { CategoryType } from "@/types/types";
 import { MainTitleColorChipStyle, MainTitleStyle } from "./MainTitle.css";
 
 interface MainTitleProps {
-  data: {
-    name: string;
-    color: string;
-  };
+  data: CategoryType;
 }
 
 const MainTitle = ({ data }: MainTitleProps) => {

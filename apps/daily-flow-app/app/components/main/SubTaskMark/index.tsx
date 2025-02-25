@@ -1,8 +1,8 @@
-import { TaskListType } from "@/types/task";
 import { SubTaskMarkStyle } from "./SubTaskMark.css";
+import { TaskStatusType } from "@/types/types";
 
 interface SubTaskMarkProps {
-  data: TaskListType;
+  data: TaskStatusType;
 }
 
 const SubTaskMark = ({ data }: SubTaskMarkProps) => {

@@ -2,13 +2,13 @@ import SubTaskMark from "../SubTaskMark";
 import TaskType from "../TaskType";
 import TaskContent from "../TaskContent";
 import { TaskStyle } from "./Task.css";
-import { TaskItemType, TaskListType } from "@/types/task";
 import AddExpenditure from "../AddExpenditure";
 import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
+import { TaskStatusType, TaskType as TaskItemType } from "@/types/types";
 
 interface TaskProps {
-  data: TaskListType;
+  data: TaskStatusType;
   item: TaskItemType;
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
@@ -17,9 +17,7 @@ const Task = ({ data, item, setIsModalOpen }: TaskProps) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(
-      `/main?status=${data.label}&task=${item.main_task}&id=${item.id}`
-    );
+    router.push(`/main?id=${item?.id}`);
     setIsModalOpen({ isOpen: true, type: "detail" });
   };
 
@@ -35,7 +33,7 @@ const Task = ({ data, item, setIsModalOpen }: TaskProps) => {
         <AddExpenditure item={item} setIsModalOpen={setIsModalOpen} />
       )}
       <TaskType item={item} />
-      {item?.sub_task?.length > 0 && <SubTaskMark data={data} />}
+      {item?.subtasks?.length > 0 && <SubTaskMark data={data} />}
     </div>
   );
 };
