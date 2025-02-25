@@ -21,6 +21,7 @@ export class TasksController {
 
   @Post()
   create(@Request() req, @Body() createTaskDto: CreateTaskDto) {
+    console.log('createTaskDto:', createTaskDto); // 요청 데이터 로깅
     return this.tasksService.create(req.user.id, createTaskDto);
   }
 

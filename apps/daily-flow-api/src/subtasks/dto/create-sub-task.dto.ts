@@ -1,15 +1,18 @@
-import { IsString, IsBoolean, IsNumber } from 'class-validator';
+import { IsString, IsBoolean, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateSubTaskDto {
   @IsString()
-  task_id: string;
+  @IsOptional() // CreateTaskDto에서 넘길 때는 없지만, SubTaskService에서는 필요
+  task_id?: string;
 
   @IsString()
   task: string;
 
   @IsBoolean()
-  complete: boolean;
+  @IsOptional()
+  complete?: boolean;
 
   @IsNumber()
-  order: number;
+  @IsOptional()
+  order?: number;
 }

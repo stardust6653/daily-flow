@@ -1,4 +1,13 @@
-import { IsString, IsBoolean, IsNumber, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsString,
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
+import { CreateSubTaskDto } from 'src/subtasks/dto/create-sub-task.dto';
 
 export class CreateTaskDto {
   @IsString()
@@ -32,4 +41,10 @@ export class CreateTaskDto {
   @IsNumber()
   @IsOptional()
   expenditure?: number;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateSubTaskDto)
+  @IsOptional()
+  subtasks?: CreateSubTaskDto[];
 }

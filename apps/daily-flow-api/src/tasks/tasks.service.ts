@@ -4,20 +4,46 @@ import { Task } from './entities/task.entity';
 import { Repository } from 'typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { SubTasksService } from 'src/subtasks/sub-task.service';
 
 @Injectable()
 export class TasksService {
   constructor(
     @InjectRepository(Task)
     private tasksRepository: Repository<Task>,
+    private subTasksService: SubTasksService,
   ) {}
 
-  async create(userId: string, createTaskDto: CreateTaskDto) {
+  async findOne(id: string) {
+    return await this.tasksRepository.findOne({
+      where: { id },
+      relations: ['subtasks'], // subtasks 관계도 함께 로드
+    });
+  }
+
+  async create(
+    userId: string,
+    createTaskDto: CreateTaskDto & { subtasks?: any[] },
+  ) {
+    const { subtasks, ...taskData } = createTaskDto;
+
     const task = this.tasksRepository.create({
-      ...createTaskDto,
+      ...taskData,
       user_id: userId,
     });
-    return await this.tasksRepository.save(task);
+    const savedTask = await this.tasksRepository.save(task);
+
+    if (subtasks && subtasks.length > 0) {
+      for (const [index, subtaskData] of subtasks.entries()) {
+        await this.subTasksService.create({
+          task_id: savedTask.id,
+          ...subtaskData,
+          order: subtaskData.order ?? index,
+        });
+      }
+    }
+
+    return this.findOne(savedTask.id);
   }
 
   async findAllByUser(userId: string) {
