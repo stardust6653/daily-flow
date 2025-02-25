@@ -5,5 +5,6 @@ export const MainSectionStyle = style({
 });
 
 export const MainSectionListStyle = style({
+  width: "100%",
   display: "flex",
 });

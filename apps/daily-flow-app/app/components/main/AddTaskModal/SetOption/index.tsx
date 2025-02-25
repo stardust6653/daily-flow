@@ -1,4 +1,10 @@
-import { useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { InputTitleStyle } from "../AddTaskModal.css";
 import {
   LabelItemColorStyle,
@@ -19,26 +25,35 @@ import {
 import { TbToggleLeftFilled } from "react-icons/tb";
 import { TbToggleRightFilled } from "react-icons/tb";
 import { themeVars } from "@/app/styles/theme.css";
-import taskList from "@/app/data/taskList.json";
+
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { TaskFormData, TaskStatusType } from "@/types/types";
+import { useSearchParams } from "next/navigation";
 
 interface SetOptionProps {
-  selectedCategory: string;
+  taskStatuses: TaskStatusType[];
+  taskData: TaskFormData;
+  setTaskData: Dispatch<SetStateAction<TaskFormData>>;
 }
 
-const SetOption = ({ selectedCategory }: SetOptionProps) => {
+const SetOption = ({ taskData, setTaskData, taskStatuses }: SetOptionProps) => {
+  const searchParams = useSearchParams();
+  const statusId = searchParams.get("status_id");
+
   const [isSchedule, setIsSchedule] = useState(false);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState({
-    label: "선택안함",
-    color: "#cbcbcb",
+    status_id: "",
+    label: "",
+    color: "",
   });
 
-  const handleToggleClick = () => setIsSchedule(!isSchedule);
+  console.log(taskStatuses);
 
-  const taskListData = taskList.filter(
-    (task) => task.name === selectedCategory
-  );
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const handleToggleClick = () => setIsSchedule(!isSchedule);
 
   const OptionColor = (type: "task" | "schedule") => {
     if (type === "task") {
@@ -51,6 +66,34 @@ const SetOption = ({ selectedCategory }: SetOptionProps) => {
         : themeVars.colors.gray[400];
     }
   };
+
+  useEffect(() => {
+    setTaskData({
+      ...taskData,
+      type: isSchedule ? "calendar" : "task",
+    });
+  }, [isSchedule]);
+
+  useEffect(() => {
+    setTaskData({
+      ...taskData,
+      period: `${startDate}~${endDate}`,
+    });
+  }, [startDate, endDate]);
+
+  useEffect(() => {
+    if (statusId) {
+      const selected = taskStatuses.find(
+        (status) => status.id === statusId
+      ) as TaskStatusType;
+
+      setSelectedStatus({
+        label: selected?.label,
+        color: selected?.color,
+        status_id: selected?.id,
+      });
+    }
+  }, [statusId]);
 
   return (
     <div className={SetOptionStyle}>
@@ -67,11 +110,23 @@ const SetOption = ({ selectedCategory }: SetOptionProps) => {
         <div className={SelectScheduleWrapperStyle}>
           <div className={SelectScheduleStyle}>
             <p className={SelectScheduleLabelStyle}>시작</p>
-            <input className={SelectScheduleInputStyle} type="date" />
+            <input
+              className={SelectScheduleInputStyle}
+              type="date"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setStartDate(e.target.value);
+              }}
+            />
           </div>
           <div className={SelectScheduleStyle}>
             <p className={SelectScheduleLabelStyle}>종료</p>
-            <input className={SelectScheduleInputStyle} type="date" />
+            <input
+              className={SelectScheduleInputStyle}
+              type="date"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setEndDate(e.target.value);
+              }}
+            />
           </div>
         </div>
       )}
@@ -91,9 +146,10 @@ const SetOption = ({ selectedCategory }: SetOptionProps) => {
           </div>
           <p>{isStatusOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
         </div>
+
         {isStatusOpen && (
           <ul className={LabelListStyle}>
-            {taskListData[0].tasks?.map((status) => (
+            {taskStatuses.map((status) => (
               <li
                 className={LabelItemStyle}
                 key={status?.label}
@@ -101,6 +157,7 @@ const SetOption = ({ selectedCategory }: SetOptionProps) => {
                   setSelectedStatus({
                     label: status?.label,
                     color: status?.color,
+                    status_id: status?.id,
                   });
                   setIsStatusOpen(false);
                 }}

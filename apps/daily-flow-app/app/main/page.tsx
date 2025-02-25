@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Sidebar from "../components/common/Sidebar";
 import MainSection from "../components/main/MainSection";
 import PageWrapper from "../components/layout/PageWrapper";
@@ -22,22 +22,22 @@ const MainPage = () => {
   });
 
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-  const { categories } = useCategories();
-  const { taskStatuses } = useTaskStatus(selectedCategory);
-  const { tasks } = useTasks(selectedCategory);
+  const { categories } = useCategories(refreshTrigger);
+  const { taskStatuses } = useTaskStatus(selectedCategory, refreshTrigger);
+  const { tasks } = useTasks(selectedCategory, refreshTrigger);
+
+  const refreshData = useCallback(() => {
+    console.log("refreshData 호출됨");
+    setRefreshTrigger((prev) => prev + 1);
+  }, []);
 
   useEffect(() => {
     if (categories.length > 0) {
       setSelectedCategory(categories[0].id);
     }
   }, [categories]);
-
-  console.log(categories);
-  console.log(selectedCategory);
-  console.log(taskStatuses);
-
-  console.log(categories.find((category) => category.id === selectedCategory));
 
   return (
     <PrivateRoute>
@@ -48,6 +48,9 @@ const MainPage = () => {
           setIsModalOpen={setIsModalOpen}
         />
         <MainSection
+          refreshData={refreshData}
+          refreshTrigger={refreshTrigger}
+          taskStatus={taskStatuses}
           categories={categories}
           selectedCategory={selectedCategory}
           setIsModalOpen={setIsModalOpen}
@@ -55,6 +58,8 @@ const MainPage = () => {
         {isModalOpen.type === "addTask" && isModalOpen.isOpen && (
           <Modal size="large">
             <AddTaskModal
+              setRefreshTrigger={setRefreshTrigger}
+              taskStatuses={taskStatuses}
               setIsModalOpen={setIsModalOpen}
               selectedCategory={selectedCategory}
             />

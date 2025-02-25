@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import api from "@/app/api/axios";
 import { CategoryType } from "@/types/types";
 
-export const useCategories = () => {
+export const useCategories = (refreshTrigger: number) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
+      console.log("fetchCategories");
       try {
         const response = await api.get("/categories");
         setCategories(response.data);
@@ -19,7 +20,7 @@ export const useCategories = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, [refreshTrigger]);
 
   return { categories, loading };
 };

@@ -2,12 +2,13 @@ import api from "@/app/api/axios";
 import { TaskType } from "@/types/types";
 import { useEffect, useState } from "react";
 
-export const useTasks = (categoryId: string) => {
+export const useTasks = (categoryId: string, refreshTrigger: number) => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTasks = async () => {
+      console.log("fetchTasks");
       try {
         const response = await api.get(`/tasks/category/${categoryId}`);
         setTasks(response.data);
@@ -21,7 +22,7 @@ export const useTasks = (categoryId: string) => {
     if (categoryId) {
       fetchTasks();
     }
-  }, [categoryId]);
+  }, [categoryId, refreshTrigger]);
 
   return { tasks, loading };
 };

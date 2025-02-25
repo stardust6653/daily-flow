@@ -8,17 +8,16 @@ import {
   SubTaskItemStyle,
 } from "./AddSubTask.css";
 import { InputTitleStyle } from "../AddTaskModal.css";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { TaskFormData } from "@/types/types";
 
-type SubTaskType = {
-  created_at: Date;
-  id: string;
-  task: string;
-};
+interface AddSubTaskProps {
+  taskData: TaskFormData;
+  setTaskData: Dispatch<SetStateAction<TaskFormData>>;
+}
 
-const AddSubTask = () => {
+const AddSubTask = ({ taskData, setTaskData }: AddSubTaskProps) => {
   const [inputTask, setInputTask] = useState<string>("");
-  const [subTasks, setSubTasks] = useState<SubTaskType[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputTask(e.target.value);
@@ -27,20 +26,27 @@ const AddSubTask = () => {
     if (e.nativeEvent.isComposing) return;
 
     if (e.key === "Enter" && inputTask) {
-      setSubTasks([
-        ...subTasks,
-        {
-          created_at: new Date(),
-          id: crypto.randomUUID(),
-          task: inputTask,
-        },
-      ]);
+      setTaskData({
+        ...taskData,
+        subtasks: [
+          ...taskData.subtasks,
+          {
+            id: `${Date.now()}`,
+            task: inputTask,
+            complete: false,
+            order: taskData.subtasks.length,
+          },
+        ],
+      });
       setInputTask("");
     }
   };
 
   const handleEraseClick = (id: string) => {
-    setSubTasks(subTasks.filter((task) => task.id !== id));
+    setTaskData({
+      ...taskData,
+      subtasks: taskData.subtasks.filter((task) => task.task_id !== id),
+    });
   };
 
   return (
@@ -55,14 +61,14 @@ const AddSubTask = () => {
         placeholder="할 일을 입력해주세요"
       />
 
-      {subTasks.length === 0 && (
+      {taskData.subtasks.length === 0 && (
         <div className={EmptySubTaskStyle}>
           서브 태스크가 <br /> 없습니다
         </div>
       )}
 
-      {subTasks
-        ?.sort((a, b) => b.created_at.getTime() - a.created_at.getTime())
+      {taskData.subtasks
+        ?.sort((a, b) => +b.id - +a.id)
         .map((task, index) => {
           return (
             <div key={index} className={SubTaskItemStyle}>

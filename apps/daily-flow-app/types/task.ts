@@ -16,18 +16,23 @@ export interface TaskListType {
 }
 
 export interface SubTaskType {
+  task_id: string;
+  order: number;
   task: string;
   complete: boolean;
 }
 
 export interface TaskItemType {
   created_at: string;
-  id: string;
-  main_task: string;
-  sub_task: SubTaskType[];
-  memo: string;
+  id?: string;
+  subtasks: SubTaskType[];
   type: "task" | "calendar" | string;
-  period: string;
-  complete: boolean;
+  category_id: string;
+  status_id: string;
+  main_task: string;
+  memo?: string;
+  period?: string;
+  order?: number;
+  complete?: boolean;
   expenditure?: number;
 }

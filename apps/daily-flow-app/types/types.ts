@@ -15,7 +15,7 @@ export interface TaskStatusType {
 }
 
 export interface TaskType {
-  category_id: string;
+  category_id?: string;
   complete: boolean;
   expenditure: string;
   id: string;
@@ -31,8 +31,21 @@ export interface TaskType {
 
 export interface SubTaskType {
   complete: boolean;
-  id: string;
   order: number;
   task: string;
-  task_id: string;
+  task_id?: string;
+  id?: string;
+}
+
+export interface TaskFormData {
+  main_task: string;
+  subtasks: SubTaskType[];
+  memo: string;
+  category_id: string;
+  status_id: string | null;
+  type: "task" | "calendar" | string;
+  period: string;
+  complete: boolean;
+  expenditure?: number;
+  created_at?: string;
 }

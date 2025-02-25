@@ -43,8 +43,6 @@ const DetailModal = ({
     (item) => item.id === task?.status_id
   ) as TaskStatusType;
 
-  console.log(task);
-
   return (
     <div className={DetailModalStyle}>
       <div className={DetailModalHeaderWrapperStyle}>

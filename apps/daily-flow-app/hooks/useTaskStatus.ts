@@ -2,12 +2,13 @@ import api from "@/app/api/axios";
 import { TaskStatusType } from "@/types/types";
 import { useEffect, useState } from "react";
 
-export const useTaskStatus = (categoryId: string) => {
+export const useTaskStatus = (categoryId: string, refreshTrigger: number) => {
   const [taskStatuses, setTaskStatuses] = useState<TaskStatusType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTaskStatuses = async () => {
+      console.log("fetchTaskStatuses");
       try {
         const response = await api.get(`/task-status/category/${categoryId}`);
         setTaskStatuses(response.data);
@@ -21,7 +22,7 @@ export const useTaskStatus = (categoryId: string) => {
     if (categoryId) {
       fetchTaskStatuses();
     }
-  }, [categoryId]);
+  }, [categoryId, refreshTrigger]);
 
   return { taskStatuses, loading };
 };
