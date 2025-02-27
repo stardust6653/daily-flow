@@ -3,13 +3,14 @@ import { MainSectionListStyle, MainSectionStyle } from "./MainSection.css";
 import TaskList from "../TaskList";
 import { Dispatch, SetStateAction } from "react";
 import AddStatusButton from "../AddStatusButton";
-import { CategoryType, TaskStatusType } from "@/types/types";
+import { CategoryType, TaskStatusType, TaskType } from "@/types/types";
+import CompleteTaskList from "../CompleteTaskList";
 
 interface MainSectionProps {
   taskStatus: TaskStatusType[];
   categories: CategoryType[];
   selectedCategory: string;
-  refreshTrigger: number;
+  tasks: TaskType[];
   refreshData: () => void;
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
@@ -19,8 +20,8 @@ const MainSection = ({
   setIsModalOpen,
   categories,
   taskStatus,
-  refreshTrigger,
   refreshData,
+  tasks,
 }: MainSectionProps) => {
   const selectedCategoryData = categories.find(
     (item) => item.id === selectedCategory
@@ -38,14 +39,19 @@ const MainSection = ({
         <div className={MainSectionListStyle}>
           {taskStatus?.map((status) => (
             <TaskList
+              tasks={tasks}
               refreshData={refreshData}
-              refreshTrigger={refreshTrigger}
-              selectedCategory={selectedCategory}
               data={status}
               setIsModalOpen={setIsModalOpen}
               key={status?.id}
             />
           ))}
+
+          <CompleteTaskList
+            tasks={tasks}
+            setIsModalOpen={setIsModalOpen}
+            refreshData={refreshData}
+          />
 
           <AddStatusButton setIsModalOpen={setIsModalOpen} />
         </div>

@@ -18,8 +18,6 @@ const StatusLabel = ({
   setIsDeleteStatusModalOpen,
   isDeleteStatusModalOpen,
 }: StatusLabelProps) => {
-  console.log(data, "data");
-
   const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDeleteStatusModalOpen({

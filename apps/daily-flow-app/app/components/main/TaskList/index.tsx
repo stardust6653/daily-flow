@@ -3,25 +3,25 @@ import StatusLabel from "../StatusLabel";
 import Task from "../Task";
 import AddTaskButton from "../AddTaskButton";
 import { Dispatch, SetStateAction, useState } from "react";
-import { TaskStatusType } from "@/types/types";
-import { useTasks } from "@/hooks/useTasks";
+import { TaskStatusType, TaskType } from "@/types/types";
 
 interface TaskListProps {
-  selectedCategory: string;
   data: TaskStatusType;
-  refreshTrigger: number;
   refreshData: () => void;
+  tasks: TaskType[];
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
 const TaskList = ({
   data,
   setIsModalOpen,
-  selectedCategory,
-  refreshTrigger,
   refreshData,
+  tasks,
 }: TaskListProps) => {
-  const { tasks } = useTasks(selectedCategory, refreshTrigger);
+  const taskList = tasks
+    .filter((task) => task.status_id === data?.id && !task.complete)
+    .sort((a, b) => +(b?.order ?? 0) - +(a?.order ?? 0));
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState({
     task: "",
     isOpen: false,
@@ -47,20 +47,17 @@ const TaskList = ({
           isDeleteStatusModalOpen={isDeleteStatusModalOpen}
           setIsDeleteStatusModalOpen={setIsDeleteStatusModalOpen}
         />
-        {tasks
-          .filter((task) => task.status_id === data?.id)
-          .sort((a, b) => +(b?.order ?? 0) - +(a?.order ?? 0))
-          .map((item) => (
-            <Task
-              setIsDeleteModalOpen={setIsDeleteModalOpen}
-              isDeleteModalOpen={isDeleteModalOpen}
-              refreshData={refreshData}
-              data={data}
-              item={item}
-              key={item.id}
-              setIsModalOpen={setIsModalOpen}
-            />
-          ))}
+        {taskList.map((item) => (
+          <Task
+            setIsDeleteModalOpen={setIsDeleteModalOpen}
+            isDeleteModalOpen={isDeleteModalOpen}
+            refreshData={refreshData}
+            data={data}
+            item={item}
+            key={item.id}
+            setIsModalOpen={setIsModalOpen}
+          />
+        ))}
         <AddTaskButton data={data} setIsModalOpen={setIsModalOpen} />
       </div>
 

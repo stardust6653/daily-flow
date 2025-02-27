@@ -1,22 +1,41 @@
+import api from "@/app/api/axios";
 import {
   MainTaskContentStyle,
   MemoStyle,
   TaskButtonStyle,
   TaskContentStyle,
 } from "./TaskContent.css";
-import { TaskStatusType, TaskType } from "@/types/types";
+import { TaskType } from "@/types/types";
+import { themeVars } from "@/app/styles/theme.css";
 
 interface TaskContentProps {
-  data: TaskStatusType;
   item: TaskType;
+  refreshData: () => void;
 }
 
-const TaskContent = ({ item, data }: TaskContentProps) => {
+const TaskContent = ({ item, refreshData }: TaskContentProps) => {
   const completeColor = (item: TaskType) => {
-    if (item.complete && data?.color) {
-      return data.color;
+    if (item.complete) {
+      return themeVars.colors.state.success;
     }
     return "transparent";
+  };
+
+  const handleCompleteClick = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.stopPropagation();
+    await api
+      .put(`/tasks/${item.id}`, {
+        complete: !item.complete,
+      })
+      .then((res) => {
+        console.log(res);
+        refreshData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -24,6 +43,7 @@ const TaskContent = ({ item, data }: TaskContentProps) => {
       <button
         className={TaskButtonStyle}
         style={{ backgroundColor: completeColor(item) }}
+        onClick={handleCompleteClick}
       />
       <div>
         <p className={MainTaskContentStyle}>{item.main_task}</p>

@@ -70,6 +70,7 @@ const AddTaskModal = ({
     try {
       const dataToSend = {
         ...taskData,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         subtasks: taskData.subtasks.map(({ id, ...rest }) => rest),
       };
       const response = await api.post("/tasks", dataToSend);

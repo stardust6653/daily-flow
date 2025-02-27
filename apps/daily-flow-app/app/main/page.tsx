@@ -49,8 +49,8 @@ const MainPage = () => {
           setIsModalOpen={setIsModalOpen}
         />
         <MainSection
+          tasks={tasks}
           refreshData={refreshData}
-          refreshTrigger={refreshTrigger}
           taskStatus={taskStatuses}
           categories={categories}
           selectedCategory={selectedCategory}

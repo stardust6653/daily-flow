@@ -1,4 +1,9 @@
-import { AddExpenditureStyle } from "./AddExpenditure.css";
+"use client";
+
+import {
+  AddExpenditureStyle,
+  AddExpenditureTextStyle,
+} from "./AddExpenditure.css";
 import { Dispatch, SetStateAction } from "react";
 import { TaskType } from "@/types/types";
 
@@ -9,11 +14,9 @@ interface AddExpenditureProps {
 
 const AddExpenditure = ({ item, setIsModalOpen }: AddExpenditureProps) => {
   const expenditure =
-    item.expenditure === undefined ? (
-      <p>지출입력</p>
-    ) : (
-      <p>{item.expenditure}원</p>
-    );
+    Math.floor(+item.expenditure) === 0
+      ? "지출입력"
+      : `${Math.floor(+item.expenditure).toLocaleString()}원`;
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -21,8 +24,10 @@ const AddExpenditure = ({ item, setIsModalOpen }: AddExpenditureProps) => {
   };
 
   return (
-    <div className={AddExpenditureStyle} onClick={handleClick}>
-      {expenditure}
+    <div className={AddExpenditureStyle}>
+      <p className={AddExpenditureTextStyle} onClick={handleClick}>
+        {expenditure}
+      </p>
     </div>
   );
 };

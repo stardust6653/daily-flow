@@ -2,7 +2,6 @@ import SubTaskMark from "../SubTaskMark";
 import TaskType from "../TaskType";
 import TaskContent from "../TaskContent";
 import { TaskStyle } from "./Task.css";
-import AddExpenditure from "../AddExpenditure";
 import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import { TaskStatusType, TaskType as TaskItemType } from "@/types/types";
@@ -51,10 +50,7 @@ const Task = ({
         onClick={handleClick}
         onContextMenu={handleContextMenu}
       >
-        <TaskContent data={data} item={item} />
-        {item.complete && (
-          <AddExpenditure item={item} setIsModalOpen={setIsModalOpen} />
-        )}
+        <TaskContent item={item} refreshData={refreshData} />
         <TaskType item={item} />
         {item?.subtasks?.length > 0 && <SubTaskMark data={data} />}
 

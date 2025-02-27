@@ -2,6 +2,10 @@ import { themeVars } from "@/app/styles/theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const DetailModalStyle = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  height: "100%",
   width: "100%",
 });
 
@@ -97,4 +101,12 @@ export const LineStyle = style({
   width: "100%",
   borderBottom: `1px solid ${themeVars.colors.gray[300]}`,
   margin: `${themeVars.space.md} 0`,
+});
+
+export const CompleteButtonStyle = style({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "flex-end",
 });
