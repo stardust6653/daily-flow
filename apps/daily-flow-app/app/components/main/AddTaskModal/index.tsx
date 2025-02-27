@@ -30,7 +30,9 @@ const AddTaskModal = ({
   refreshData,
 }: AddTaskModalProps) => {
   const searchParams = useSearchParams();
-  const statusId = searchParams.get("status_id");
+  const status_id = searchParams.get("status_id");
+
+  const [statusId, setStatusId] = useState<string>(status_id as string);
 
   const [taskData, setTaskData] = useState<TaskFormData>({
     main_task: "",
@@ -45,13 +47,11 @@ const AddTaskModal = ({
   });
 
   useEffect(() => {
-    if (statusId) {
-      setTaskData({
-        ...taskData,
-        status_id: statusId,
-      });
-    }
-  }, [statusId]);
+    setTaskData({
+      ...taskData,
+      status_id,
+    });
+  }, [status_id]);
 
   const handleCloseClick = () =>
     setIsModalOpen({
@@ -107,6 +107,7 @@ const AddTaskModal = ({
             taskStatuses={taskStatuses}
             taskData={taskData}
             setTaskData={setTaskData}
+            setStatusId={setStatusId}
           />
         </div>
       </div>

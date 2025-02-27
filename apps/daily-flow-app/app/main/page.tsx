@@ -80,7 +80,10 @@ const MainPage = () => {
 
         {isModalOpen.type === "addExpenditure" && isModalOpen.isOpen && (
           <Modal size="small">
-            <AddExpenditureModal setIsModalOpen={setIsModalOpen} />
+            <AddExpenditureModal
+              setIsModalOpen={setIsModalOpen}
+              refreshData={refreshData}
+            />
           </Modal>
         )}
 

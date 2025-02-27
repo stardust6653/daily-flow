@@ -61,10 +61,13 @@ const TaskList = ({
         <AddTaskButton data={data} setIsModalOpen={setIsModalOpen} />
       </div>
 
-      {isDeleteModalOpen.isOpen ||
-        (isDeleteStatusModalOpen.isOpen && (
-          <div className={DeleteModalBgStyle} onClick={handleModalBgClick} />
-        ))}
+      {isDeleteModalOpen.isOpen && (
+        <div className={DeleteModalBgStyle} onClick={handleModalBgClick} />
+      )}
+
+      {isDeleteStatusModalOpen.isOpen && (
+        <div className={DeleteModalBgStyle} onClick={handleModalBgClick} />
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { StatusLabelStyle } from "./StatusLabel.css";
+import { StatusLabelStyle, StatusLabelTextStyle } from "./StatusLabel.css";
 import { TaskStatusType } from "@/types/types";
 import { Dispatch, SetStateAction } from "react";
 import DeleteStatusModal from "../DeleteStatusModal";
@@ -31,7 +31,7 @@ const StatusLabel = ({
       style={{ backgroundColor: data?.color }}
       onContextMenu={handleContextMenu}
     >
-      <span>{data.label}</span>
+      <span className={StatusLabelTextStyle}>{data.label}</span>
 
       {isDeleteStatusModalOpen.isOpen &&
         data?.id === isDeleteStatusModalOpen.status && (

@@ -5,6 +5,7 @@ import {
   DeleteModalColorStyle,
   DeleteModalContentStyle,
   DeleteModalStyle,
+  StatusLabelTextStyle,
 } from "./DeleteStatusModal.css";
 import { TaskStatusType } from "@/types/types";
 import api from "@/app/api/axios";
@@ -43,7 +44,7 @@ const DeleteStatusModal = ({
           className={DeleteModalColorStyle}
           style={{ backgroundColor: data?.color }}
         />
-        <span>{data?.label}</span>
+        <span className={StatusLabelTextStyle}>{data?.label}</span>
       </div>
       <button className={DeleteModalButtonStyle} onClick={handleDeleteClick}>
         <FaRegTrashCan className={DeleteIconStyle} />

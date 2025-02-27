@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { baseAddTaskBoxStyle } from "../AddTaskModal.css";
 import { themeVars } from "@/app/styles/theme.css";
+import { EllipsisTextStyle } from "@/app/styles/common.css";
 
 export const SetOptionStyle = style([
   baseAddTaskBoxStyle,
@@ -74,6 +75,8 @@ export const SelectedLabelStyle = style({
 export const SelectedLabelNameStyle = style({
   display: "flex",
   alignItems: "center",
+  maxWidth: "100%",
+  overflow: "hidden",
 });
 
 export const LabelListStyle = style({
@@ -91,7 +94,17 @@ export const LabelItemStyle = style({
   },
 });
 
+export const LabelItemTextStyle = style([
+  EllipsisTextStyle,
+  {
+    display: "block",
+    width: "100%",
+  },
+]);
+
 export const LabelItemColorStyle = style({
+  minHeight: "10px",
+  minWidth: "10px",
   width: "10px",
   height: "10px",
   borderRadius: "50%",

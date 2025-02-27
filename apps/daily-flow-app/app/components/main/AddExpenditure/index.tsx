@@ -6,6 +6,7 @@ import {
 } from "./AddExpenditure.css";
 import { Dispatch, SetStateAction } from "react";
 import { TaskType } from "@/types/types";
+import { useRouter } from "next/navigation";
 
 interface AddExpenditureProps {
   item: TaskType;
@@ -13,6 +14,8 @@ interface AddExpenditureProps {
 }
 
 const AddExpenditure = ({ item, setIsModalOpen }: AddExpenditureProps) => {
+  const router = useRouter();
+
   const expenditure =
     Math.floor(+item.expenditure) === 0
       ? "지출입력"
@@ -20,6 +23,7 @@ const AddExpenditure = ({ item, setIsModalOpen }: AddExpenditureProps) => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    router.push(`/main?id=${item.id}&type=addExpenditure`);
     setIsModalOpen({ isOpen: true, type: "addExpenditure" });
   };
 

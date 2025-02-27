@@ -17,6 +17,7 @@ export const DeleteModalStyle = style({
   height: "72px",
   zIndex: 100,
   boxSizing: "border-box",
+  cursor: "default",
 });
 
 export const DeleteModalContentStyle = style({
@@ -34,15 +35,35 @@ export const DeleteModalColorStyle = style({
 });
 
 export const DeleteModalButtonStyle = style({
+  fontSize: themeVars.fontSizes.sm,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   cursor: "pointer",
   border: `1px solid ${themeVars.colors.state.error}`,
   width: "100%",
-  padding: "5px",
+  padding: "3px 5px",
   borderRadius: "5px",
   color: themeVars.colors.state.error,
   transition: "all 0.3s ease-in-out",
+  whiteSpace: "nowrap", // 버튼 텍스트가 줄바꿈되지 않도록
   ":hover": {
     backgroundColor: themeVars.colors.state.error,
     color: themeVars.colors.base.white,
   },
+});
+
+export const MainTaskTextStyle = style({
+  display: "block",
+  maxWidth: "150px", // 아이콘과 여백을 고려해 줄임
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  flex: "1", // 남은 공간을 모두 차지
+  minWidth: 0, // flexbox 내에서 축소 가능하도록 설정
+});
+
+export const DeleteIconStyle = style({
+  marginBottom: "2px",
+  marginRight: "5px",
 });

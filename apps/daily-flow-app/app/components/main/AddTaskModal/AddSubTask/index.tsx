@@ -19,6 +19,12 @@ interface AddSubTaskProps {
 const AddSubTask = ({ taskData, setTaskData }: AddSubTaskProps) => {
   const [inputTask, setInputTask] = useState<string>("");
 
+  const subTaskList = taskData?.subtasks?.sort(
+    (a, b) => +(b?.id ?? 0) - +(a?.id ?? 0)
+  );
+
+  console.log(subTaskList);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputTask(e.target.value);
 
@@ -45,7 +51,7 @@ const AddSubTask = ({ taskData, setTaskData }: AddSubTaskProps) => {
   const handleEraseClick = (id: string) => {
     setTaskData({
       ...taskData,
-      subtasks: taskData.subtasks.filter((task) => task.task_id !== id),
+      subtasks: taskData.subtasks.filter((task) => task.id !== id),
     });
   };
 
@@ -67,21 +73,19 @@ const AddSubTask = ({ taskData, setTaskData }: AddSubTaskProps) => {
         </div>
       )}
 
-      {taskData.subtasks
-        ?.sort((a, b) => +b.id - +a.id)
-        .map((task, index) => {
-          return (
-            <div key={index} className={SubTaskItemStyle}>
-              <p className={SubTaskContentStyle}>- {task.task}</p>
-              <p
-                className={EraseButtonStyle}
-                onClick={() => handleEraseClick(task.id)}
-              >
-                <FaRegTrashCan />
-              </p>
-            </div>
-          );
-        })}
+      {subTaskList.map((task, index) => {
+        return (
+          <div key={index} className={SubTaskItemStyle}>
+            <p className={SubTaskContentStyle}>- {task.task}</p>
+            <p
+              className={EraseButtonStyle}
+              onClick={() => handleEraseClick(task?.id ?? "")}
+            >
+              <FaRegTrashCan />
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 };

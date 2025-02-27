@@ -9,6 +9,7 @@ import { InputTitleStyle } from "../AddTaskModal.css";
 import {
   LabelItemColorStyle,
   LabelItemStyle,
+  LabelItemTextStyle,
   LabelListStyle,
   SelectedLabelNameStyle,
   SelectedLabelStyle,
@@ -29,14 +30,21 @@ import { themeVars } from "@/app/styles/theme.css";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TaskFormData, TaskStatusType } from "@/types/types";
 import { useSearchParams } from "next/navigation";
+import { EllipsisTextStyle } from "@/app/styles/common.css";
 
 interface SetOptionProps {
   taskStatuses: TaskStatusType[];
   taskData: TaskFormData;
   setTaskData: Dispatch<SetStateAction<TaskFormData>>;
+  setStatusId: Dispatch<SetStateAction<string>>;
 }
 
-const SetOption = ({ taskData, setTaskData, taskStatuses }: SetOptionProps) => {
+const SetOption = ({
+  taskData,
+  setTaskData,
+  taskStatuses,
+  setStatusId,
+}: SetOptionProps) => {
   const searchParams = useSearchParams();
   const statusId = searchParams.get("status_id");
 
@@ -90,7 +98,7 @@ const SetOption = ({ taskData, setTaskData, taskStatuses }: SetOptionProps) => {
       setSelectedStatus({
         label: selected?.label,
         color: selected?.color,
-        status_id: selected?.id,
+        status_id: selected?.id ?? "",
       });
     }
   }, [statusId]);
@@ -142,7 +150,7 @@ const SetOption = ({ taskData, setTaskData, taskStatuses }: SetOptionProps) => {
               className={LabelItemColorStyle}
               style={{ backgroundColor: selectedStatus?.color }}
             />
-            <p>{selectedStatus.label}</p>
+            <p className={EllipsisTextStyle}>{selectedStatus.label}</p>
           </div>
           <p>{isStatusOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</p>
         </div>
@@ -157,8 +165,9 @@ const SetOption = ({ taskData, setTaskData, taskStatuses }: SetOptionProps) => {
                   setSelectedStatus({
                     label: status?.label,
                     color: status?.color,
-                    status_id: status?.id,
+                    status_id: status?.id ?? "",
                   });
+                  setStatusId(status?.id as string);
                   setIsStatusOpen(false);
                 }}
               >
@@ -166,7 +175,7 @@ const SetOption = ({ taskData, setTaskData, taskStatuses }: SetOptionProps) => {
                   className={LabelItemColorStyle}
                   style={{ backgroundColor: status?.color }}
                 />
-                {status?.label}
+                <span className={LabelItemTextStyle}>{status?.label}</span>
               </li>
             ))}
           </ul>

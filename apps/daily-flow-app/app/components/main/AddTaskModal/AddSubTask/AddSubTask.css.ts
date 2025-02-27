@@ -14,6 +14,9 @@ export const AddSubTaskInputStyle = style({
   padding: "5px 4px",
   borderBottom: `1px solid ${themeVars.colors.gray[300]}`,
   marginBottom: themeVars.space.md,
+  width: "100%",
+  boxSizing: "border-box",
+  fontSize: themeVars.fontSizes.sm,
 });
 
 export const SubTaskItemStyle = style({
