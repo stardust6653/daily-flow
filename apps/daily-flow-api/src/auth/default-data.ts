@@ -41,7 +41,6 @@ export const DEFAULT_CATEGORIES: Category[] = [
     statuses: [
       { label: '진행 전', color: '#9681FF', sub_color: '#F0F1FF' },
       { label: '진행 중', color: '#FF8183', sub_color: '#FFF0F4' },
-      { label: '완료', color: '#67CF86', sub_color: '#F0FFF6' },
     ],
     tasks: [
       {
@@ -64,20 +63,6 @@ export const DEFAULT_CATEGORIES: Category[] = [
         period: '2025-02-15 ~ 2025-03-15', // calendar 타입이므로 기간 지정
         order: 0, // 첫 번째 항목
       },
-      {
-        statusLabel: '완료',
-        main_task: '장보기',
-        memo: '마트에서 주간 식품 구매',
-        type: 'task',
-        period: '', // task 타입이므로 빈 문자열
-        complete: true,
-        expenditure: 35000,
-        order: 0, // 첫 번째 항목
-        subtasks: [
-          { task: '야채 구매', complete: true, order: 1 },
-          { task: '육류 구매', complete: true, order: 2 },
-        ],
-      },
     ],
   },
   {
@@ -87,7 +72,6 @@ export const DEFAULT_CATEGORIES: Category[] = [
     statuses: [
       { label: '할 일', color: '#9681FF', sub_color: '#F0F1FF' },
       { label: '진행 중', color: '#FF8183', sub_color: '#FFF0F4' },
-      { label: '완료', color: '#67CF86', sub_color: '#F0FFF6' },
     ],
     tasks: [
       {
@@ -106,7 +90,6 @@ export const DEFAULT_CATEGORIES: Category[] = [
     order: 3,
     statuses: [
       { label: '예정', color: '#9681FF', sub_color: '#F0F1FF' },
-      { label: '완료', color: '#67CF86', sub_color: '#F0FFF6' },
       { label: '취소', color: '#FF8183', sub_color: '#FFF0F4' },
     ],
     tasks: [
