@@ -23,7 +23,7 @@ export class User {
   @Column()
   nickname: string;
 
-  @Column({ default: true }) // 기본값 설정
+  @Column({ default: false }) // 기본값 설정
   show_tutorial: boolean;
 
   @CreateDateColumn()
