@@ -38,7 +38,7 @@ export class Task {
   @Column({ default: false })
   complete: boolean;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  @Column({ type: 'decimal', precision: 9, scale: 0, default: 0 })
   expenditure: number;
 
   @Column({ nullable: true })
