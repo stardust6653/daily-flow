@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateCategoryDto {
   @IsString()
@@ -8,5 +8,6 @@ export class CreateCategoryDto {
   color: string;
 
   @IsNumber()
-  order: number;
+  @IsOptional()
+  order?: number;
 }

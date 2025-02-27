@@ -14,9 +14,14 @@ export class CategoriesService {
   ) {}
 
   async create(userId: string, createCategoryDto: CreateCategoryDto) {
+    const count = await this.categoriesRepository.count({
+      where: { user_id: userId },
+    });
+
     const category = this.categoriesRepository.create({
       ...createCategoryDto,
       user_id: userId,
+      order: createCategoryDto.order ?? count,
     });
     return await this.categoriesRepository.save(category);
   }

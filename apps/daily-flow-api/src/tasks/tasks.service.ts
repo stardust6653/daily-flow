@@ -27,9 +27,16 @@ export class TasksService {
   ) {
     const { subtasks, ...taskData } = createTaskDto;
 
+    const tasksCount = await this.tasksRepository.count({
+      where: {
+        status_id: taskData.status_id,
+      },
+    });
+
     const task = this.tasksRepository.create({
       ...taskData,
       user_id: userId,
+      order: taskData.order ?? tasksCount,
     });
     const savedTask = await this.tasksRepository.save(task);
 
