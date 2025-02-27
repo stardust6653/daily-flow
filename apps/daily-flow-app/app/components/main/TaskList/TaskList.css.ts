@@ -3,6 +3,8 @@ import { style } from "@vanilla-extract/css";
 
 export const TaskListStyle = style({
   width: "214px",
+
+  flexShrink: 0,
   marginTop: themeVars.space.xl,
   marginRight: themeVars.space.sm,
 });

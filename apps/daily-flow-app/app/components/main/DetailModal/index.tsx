@@ -22,15 +22,18 @@ import { LuCircleCheckBig } from "react-icons/lu";
 import { BsCalendarCheck } from "react-icons/bs";
 import { FaTasks } from "react-icons/fa";
 import { CiMemoPad } from "react-icons/ci";
-import { TaskStatusType, TaskType } from "@/types/types";
+import { SubTaskType, TaskStatusType, TaskType } from "@/types/types";
+import api from "@/app/api/axios";
 
 interface DetailModalProps {
+  refreshData: () => void;
   tasks: TaskType[];
   taskStatuses: TaskStatusType[];
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
 const DetailModal = ({
+  refreshData,
   setIsModalOpen,
   taskStatuses,
   tasks,
@@ -43,6 +46,22 @@ const DetailModal = ({
     (item) => item.id === task?.status_id
   ) as TaskStatusType;
 
+  const handleSubTaskUpdateClick = async (subtask: SubTaskType) => {
+    console.log(subtask);
+
+    await api
+      .put(`/subtasks/${subtask.id}`, {
+        complete: !subtask.complete,
+      })
+      .then((res) => {
+        refreshData();
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className={DetailModalStyle}>
       <div className={DetailModalHeaderWrapperStyle}>
@@ -51,6 +70,7 @@ const DetailModal = ({
           style={{ backgroundColor: label?.color }}
         />
         <ModalHeader
+          size="large"
           title={task?.main_task as string}
           handleCloseClick={() =>
             setIsModalOpen({ isOpen: false, type: "detail" })
@@ -93,7 +113,11 @@ const DetailModal = ({
               <li>비어있음</li>
             ) : (
               task?.subtasks?.map((task, index) => (
-                <li className={SubTaskContentStyle} key={index}>
+                <li
+                  className={SubTaskContentStyle}
+                  key={index}
+                  onClick={() => handleSubTaskUpdateClick(task)}
+                >
                   <div
                     className={
                       task?.complete

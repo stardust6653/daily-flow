@@ -65,6 +65,7 @@ export const SubTaskStyle = style({
 
 export const SubTaskContentStyle = style({
   display: "flex",
+  cursor: "pointer",
 });
 
 export const buttonStyle = style({

@@ -14,6 +14,7 @@ import { PrivateRoute } from "../components/auth/PrivateRoute";
 import { useCategories } from "@/hooks/useCategories";
 import { useTasks } from "@/hooks/useTasks";
 import { useTaskStatus } from "@/hooks/useTaskStatus";
+import DeleteCategoryModal from "../components/main/DeleteCategoryModal";
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState({
@@ -58,7 +59,7 @@ const MainPage = () => {
         {isModalOpen.type === "addTask" && isModalOpen.isOpen && (
           <Modal size="large">
             <AddTaskModal
-              setRefreshTrigger={setRefreshTrigger}
+              refreshData={refreshData}
               taskStatuses={taskStatuses}
               setIsModalOpen={setIsModalOpen}
               selectedCategory={selectedCategory}
@@ -69,8 +70,10 @@ const MainPage = () => {
         {isModalOpen.type === "addStatus" && isModalOpen.isOpen && (
           <Modal size="large">
             <AddStatusModal
-              setIsModalOpen={setIsModalOpen}
+              refreshData={refreshData}
               selectedCategory={selectedCategory}
+              taskStatuses={taskStatuses}
+              setIsModalOpen={setIsModalOpen}
             />
           </Modal>
         )}
@@ -83,16 +86,31 @@ const MainPage = () => {
 
         {isModalOpen.type === "addCategory" && isModalOpen.isOpen && (
           <Modal size="small">
-            <AddCategoryModal setIsModalOpen={setIsModalOpen} />
+            <AddCategoryModal
+              setIsModalOpen={setIsModalOpen}
+              refreshData={refreshData}
+            />
           </Modal>
         )}
 
         {isModalOpen.type === "detail" && isModalOpen.isOpen && (
           <Modal size="large">
             <DetailModal
+              refreshData={refreshData}
               tasks={tasks}
               taskStatuses={taskStatuses}
               setIsModalOpen={setIsModalOpen}
+            />
+          </Modal>
+        )}
+
+        {isModalOpen.type === "deleteCategory" && isModalOpen.isOpen && (
+          <Modal size="small">
+            <DeleteCategoryModal
+              refreshData={refreshData}
+              setIsModalOpen={setIsModalOpen}
+              categories={categories}
+              selectedCategory={selectedCategory}
             />
           </Modal>
         )}

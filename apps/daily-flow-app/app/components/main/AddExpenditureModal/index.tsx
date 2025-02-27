@@ -23,7 +23,11 @@ const AddExpenditureModal = ({ setIsModalOpen }: AddExpenditureModalProps) => {
   return (
     <div className={AddExpenditureModalStyle}>
       <div>
-        <ModalHeader title="지출 입력" handleCloseClick={handleCloseClick} />
+        <ModalHeader
+          title="지출 입력"
+          handleCloseClick={handleCloseClick}
+          size="medium"
+        />
 
         <div className={AddExpenditureInputWrapperStyle}>
           <input

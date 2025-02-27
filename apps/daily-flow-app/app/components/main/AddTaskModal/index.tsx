@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import {
   AddButtonStyle,
@@ -19,7 +19,7 @@ import api from "@/app/api/axios";
 interface AddTaskModalProps {
   taskStatuses: TaskStatusType[];
   selectedCategory: string;
-  setRefreshTrigger: Dispatch<SetStateAction<number>>;
+  refreshData: () => void;
   setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
 }
 
@@ -27,7 +27,7 @@ const AddTaskModal = ({
   selectedCategory,
   setIsModalOpen,
   taskStatuses,
-  setRefreshTrigger,
+  refreshData,
 }: AddTaskModalProps) => {
   const searchParams = useSearchParams();
   const statusId = searchParams.get("status_id");
@@ -43,6 +43,15 @@ const AddTaskModal = ({
     complete: false,
     expenditure: 0,
   });
+
+  useEffect(() => {
+    if (statusId) {
+      setTaskData({
+        ...taskData,
+        status_id: statusId,
+      });
+    }
+  }, [statusId]);
 
   const handleCloseClick = () =>
     setIsModalOpen({
@@ -63,18 +72,11 @@ const AddTaskModal = ({
         ...taskData,
         subtasks: taskData.subtasks.map(({ id, ...rest }) => rest),
       };
-
       const response = await api.post("/tasks", dataToSend);
       console.log("Task 생성 성공:", response.data);
 
-      // 모달 닫기
       setIsModalOpen({ isOpen: false, type: "" });
-
-      // 모달이 닫힌 후 새로고침 (setTimeout 사용)
-      setTimeout(() => {
-        console.log("지연된 새로고침 실행");
-        setRefreshTrigger((prev) => prev + 1);
-      }, 100);
+      refreshData();
     } catch (err) {
       console.error("Task 생성 실패:", err);
     }
@@ -85,7 +87,11 @@ const AddTaskModal = ({
   return (
     <div className={AddTaskModalStyle}>
       <div>
-        <ModalHeader title="태스크 추가" handleCloseClick={handleCloseClick} />
+        <ModalHeader
+          title="태스크 추가"
+          handleCloseClick={handleCloseClick}
+          size="large"
+        />
         <input
           className={AddTaskInputStyle}
           type="text"

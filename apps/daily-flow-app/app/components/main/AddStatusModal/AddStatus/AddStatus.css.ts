@@ -75,3 +75,17 @@ export const SubColorChipStyle = style([
     right: 0,
   },
 ]);
+
+export const SelectedColorStyle = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  color: "white",
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0, 0, 0, 0.3)",
+  borderRadius: "50%",
+  top: 0,
+  left: 0,
+});

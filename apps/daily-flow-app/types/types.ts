@@ -9,7 +9,7 @@ export interface CategoryType {
 export interface TaskStatusType {
   category_id: string;
   color: string;
-  id: string;
+  id?: string;
   label: string;
   sub_color: string;
 }

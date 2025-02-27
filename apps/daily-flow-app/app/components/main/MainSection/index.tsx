@@ -27,23 +27,30 @@ const MainSection = ({
   );
 
   return (
-    <section className={MainSectionStyle}>
-      {selectedCategoryData && <MainTitle data={selectedCategoryData} />}
-      <div className={MainSectionListStyle}>
-        {taskStatus?.map((status) => (
-          <TaskList
-            refreshData={refreshData}
-            refreshTrigger={refreshTrigger}
-            selectedCategory={selectedCategory}
-            data={status}
+    <>
+      <section className={MainSectionStyle}>
+        {selectedCategoryData && (
+          <MainTitle
+            data={selectedCategoryData}
             setIsModalOpen={setIsModalOpen}
-            key={status?.id}
           />
-        ))}
+        )}
+        <div className={MainSectionListStyle}>
+          {taskStatus?.map((status) => (
+            <TaskList
+              refreshData={refreshData}
+              refreshTrigger={refreshTrigger}
+              selectedCategory={selectedCategory}
+              data={status}
+              setIsModalOpen={setIsModalOpen}
+              key={status?.id}
+            />
+          ))}
 
-        <AddStatusButton setIsModalOpen={setIsModalOpen} />
-      </div>
-    </section>
+          <AddStatusButton setIsModalOpen={setIsModalOpen} />
+        </div>
+      </section>
+    </>
   );
 };
 

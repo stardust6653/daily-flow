@@ -1,5 +1,5 @@
 import { themeVars } from "@/app/styles/theme.css";
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const ModalHeaderStyle = style({
   width: "100%",
@@ -12,4 +12,10 @@ export const ModalHeaderStyle = style({
 
 export const CloseButtonStyle = style({
   cursor: "pointer",
+});
+
+export const ModalHeaderTitleStyle = styleVariants({
+  small: { fontSize: themeVars.fontSizes.sm },
+  medium: { fontSize: themeVars.fontSizes.md },
+  large: { fontSize: themeVars.fontSizes.xl },
 });

@@ -1,4 +1,3 @@
-import { TaskListDataType } from "@/types/task";
 import {
   AddStatusWrapperStyle,
   RemoveIconStyle,
@@ -9,29 +8,28 @@ import {
   StatusListTitleStyle,
 } from "./StatusList.css";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { TaskStatusType } from "@/types/types";
 
 interface StatusListProps {
-  taskListData: TaskListDataType[];
+  taskListData: TaskStatusType[];
 }
 
 const StatusList = ({ taskListData }: StatusListProps) => {
-  const statusList = taskListData[0].tasks;
-
   return (
     <div className={AddStatusWrapperStyle}>
       <h3 className={StatusListTitleStyle}>목록</h3>
       <ul className={StatusListStyle}>
-        {statusList?.map((status) => (
-          <li className={StatusListItemStyle} key={status.label}>
+        {taskListData?.map((status) => (
+          <li className={StatusListItemStyle} key={status?.label}>
             <div className={StatusLabelStyle}>
               <span
                 className={StatusColorStyle}
-                style={{ backgroundColor: status.color }}
+                style={{ backgroundColor: status?.color }}
               />
-              <span>{status.label}</span>
+              <span>{status?.label}</span>
             </div>
 
-            <FaRegTrashCan className={RemoveIconStyle} />
+            {/* <FaRegTrashCan className={RemoveIconStyle} /> */}
           </li>
         ))}
       </ul>

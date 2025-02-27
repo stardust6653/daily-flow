@@ -1,15 +1,20 @@
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { CloseButtonStyle, ModalHeaderStyle } from "./ModalHeader.css";
+import {
+  CloseButtonStyle,
+  ModalHeaderStyle,
+  ModalHeaderTitleStyle,
+} from "./ModalHeader.css";
 
 interface ModalHeaderProps {
   title: string;
   handleCloseClick: () => void;
+  size: "small" | "medium" | "large";
 }
 
-const ModalHeader = ({ title, handleCloseClick }: ModalHeaderProps) => {
+const ModalHeader = ({ title, handleCloseClick, size }: ModalHeaderProps) => {
   return (
     <div className={ModalHeaderStyle}>
-      <h3>{title}</h3>
+      <h3 className={ModalHeaderTitleStyle[size]}>{title}</h3>
       <span className={CloseButtonStyle}>
         <IoCloseCircleOutline onClick={handleCloseClick} />
       </span>

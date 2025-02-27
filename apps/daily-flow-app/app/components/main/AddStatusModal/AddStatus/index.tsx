@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction, useState } from "react";
 import {
   AddStatusTitleStyle,
   AddStatusWrapperStyle,
@@ -8,13 +9,48 @@ import {
   NameInputStyle,
   OptionNameStyle,
   OptionStyle,
+  SelectedColorStyle,
   SubColorChipStyle,
 } from "./AddStatus.css";
 
 import ColorChipList from "@/app/data/colorChipList.json";
+import { TaskStatusType } from "@/types/types";
+import { FaCheck } from "react-icons/fa";
 
-const AddStatus = () => {
+interface AddStatusProps {
+  addStatusData: TaskStatusType;
+  setAddStatusData: Dispatch<SetStateAction<TaskStatusType>>;
+}
+
+const AddStatus = ({ setAddStatusData, addStatusData }: AddStatusProps) => {
+  const [statusName, setStatusName] = useState("");
+  const [selectedColor, setSelectedColor] = useState({
+    main_color: "",
+    sub_color: "",
+  });
+
   const colorChipList = ColorChipList;
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStatusName(e.currentTarget.value);
+    setAddStatusData({
+      ...addStatusData,
+      label: e.currentTarget.value,
+    });
+  };
+
+  const handleColorChipClick = (colorChip: {
+    main_color: string;
+    sub_color: string;
+  }) => {
+    setAddStatusData({
+      ...addStatusData,
+      label: statusName,
+      color: colorChip.main_color,
+      sub_color: colorChip.sub_color,
+    });
+    setSelectedColor(colorChip);
+  };
 
   return (
     <div className={AddStatusWrapperStyle}>
@@ -25,13 +61,19 @@ const AddStatus = () => {
           className={NameInputStyle}
           type="text"
           placeholder="상태 이름을 입력해주세요."
+          onChange={handleNameChange}
+          value={statusName}
         />
       </div>
       <div className={OptionStyle}>
         <p className={OptionNameStyle}>컬러칩 선택</p>
         <div className={ColorChipListStyle}>
           {colorChipList.palettes.map((colorChip, index) => (
-            <div className={ColorChipWrapperStyle} key={index}>
+            <div
+              className={ColorChipWrapperStyle}
+              key={index}
+              onClick={() => handleColorChipClick(colorChip)}
+            >
               <div className={ColorChipStyle}>
                 <span
                   className={MainColorChipStyle}
@@ -41,6 +83,11 @@ const AddStatus = () => {
                   className={SubColorChipStyle}
                   style={{ backgroundColor: colorChip.sub_color }}
                 />
+                {selectedColor.main_color === colorChip.main_color && (
+                  <div className={SelectedColorStyle}>
+                    <FaCheck />
+                  </div>
+                )}
               </div>
             </div>
           ))}

@@ -13,7 +13,7 @@ export const SidebarStyle = style({
 });
 
 export const SidebarMenuWrapperStyle = style({
-  width: "100%",
+  width: "328px",
   boxSizing: "border-box",
   padding: "13px 19px",
   display: "flex",

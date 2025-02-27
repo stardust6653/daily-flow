@@ -27,17 +27,29 @@ const TaskList = ({
     isOpen: false,
   });
 
+  const [isDeleteStatusModalOpen, setIsDeleteStatusModalOpen] = useState({
+    status: "",
+    isOpen: false,
+  });
+
   const handleModalBgClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
+    setIsDeleteStatusModalOpen({ status: "", isOpen: false });
     setIsDeleteModalOpen({ task: "", isOpen: false });
   };
 
   return (
     <>
       <div className={TaskListStyle}>
-        <StatusLabel data={data} />
+        <StatusLabel
+          data={data}
+          refreshData={refreshData}
+          isDeleteStatusModalOpen={isDeleteStatusModalOpen}
+          setIsDeleteStatusModalOpen={setIsDeleteStatusModalOpen}
+        />
         {tasks
           .filter((task) => task.status_id === data?.id)
+          .sort((a, b) => +(b?.order ?? 0) - +(a?.order ?? 0))
           .map((item) => (
             <Task
               setIsDeleteModalOpen={setIsDeleteModalOpen}
@@ -52,9 +64,10 @@ const TaskList = ({
         <AddTaskButton data={data} setIsModalOpen={setIsModalOpen} />
       </div>
 
-      {isDeleteModalOpen.isOpen && (
-        <div className={DeleteModalBgStyle} onClick={handleModalBgClick} />
-      )}
+      {isDeleteModalOpen.isOpen ||
+        (isDeleteStatusModalOpen.isOpen && (
+          <div className={DeleteModalBgStyle} onClick={handleModalBgClick} />
+        ))}
     </>
   );
 };

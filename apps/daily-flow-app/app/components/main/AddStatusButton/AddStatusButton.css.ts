@@ -5,7 +5,8 @@ export const AddStatusButtonWrapperStyle = style({
   width: "214px",
   display: "flex",
   marginTop: themeVars.space.xl,
-  marginRight: themeVars.space.sm,
+  flexShrink: 0,
+  marginRight: "61px",
 });
 
 export const AddStatusButtonStyle = style({

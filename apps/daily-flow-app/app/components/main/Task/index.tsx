@@ -34,6 +34,14 @@ const Task = ({
     setIsModalOpen({ isOpen: true, type: "detail" });
   };
 
+  const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDeleteModalOpen({
+      task: item.id,
+      isOpen: !isDeleteModalOpen.isOpen,
+    });
+  };
+
   return (
     <>
       <div
@@ -41,13 +49,7 @@ const Task = ({
         key={item.id}
         style={{ backgroundColor: data?.sub_color }}
         onClick={handleClick}
-        onContextMenu={(e) => {
-          e.preventDefault();
-          setIsDeleteModalOpen({
-            task: item.id,
-            isOpen: !isDeleteModalOpen.isOpen,
-          });
-        }}
+        onContextMenu={handleContextMenu}
       >
         <TaskContent data={data} item={item} />
         {item.complete && (
