@@ -51,3 +51,34 @@ globalStyle("button", {
   background: "none",
   cursor: "pointer",
 });
+
+// 추가
+
+globalStyle("*, *::before, *::after", {
+  boxSizing: "border-box",
+});
+
+globalStyle("input, textarea, select, button", {
+  font: "inherit",
+  color: "inherit",
+  letterSpacing: "inherit",
+});
+
+globalStyle("img, svg", {
+  maxWidth: "100%",
+  height: "auto",
+  display: "block",
+});
+
+globalStyle(":focus", {
+  outline: "none",
+});
+
+globalStyle(":focus-visible", {
+  outline: "2px solid #4D90FE",
+  outlineOffset: "2px",
+});
+
+globalStyle("*", {
+  WebkitTapHighlightColor: "transparent",
+});
