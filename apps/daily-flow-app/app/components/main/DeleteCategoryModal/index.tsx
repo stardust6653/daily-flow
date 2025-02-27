@@ -67,7 +67,7 @@ const DeleteCategoryModal = ({
       </div>
       <button className={DeleteButtonStyle} onClick={handleDeleteClick}>
         <FaTrashCan className={DeleteIconStyle} />
-        삭제
+        <span>삭제</span>
       </button>
     </div>
   );

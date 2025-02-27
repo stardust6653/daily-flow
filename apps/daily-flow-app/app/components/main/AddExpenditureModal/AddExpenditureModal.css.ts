@@ -14,11 +14,12 @@ export const AddExpenditureInputWrapperStyle = style({
 
 export const AddExpenditureInputStyle = style({
   width: "100%",
-  padding: "8px 20px 8px 5px",
+  padding: "8px 20px 4px 5px",
   border: "none",
   borderBottom: `1px solid ${themeVars.colors.gray[300]}`,
   boxSizing: "border-box",
   marginTop: themeVars.space.sm,
+  fontSize: themeVars.fontSizes.sm,
 });
 
 export const AddExpenditureWonStyle = style({

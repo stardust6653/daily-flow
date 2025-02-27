@@ -1,13 +1,13 @@
 import {
   AddStatusWrapperStyle,
-  RemoveIconStyle,
   StatusColorStyle,
   StatusLabelStyle,
   StatusListItemStyle,
   StatusListStyle,
   StatusListTitleStyle,
+  StatusNameStyle,
 } from "./StatusList.css";
-import { FaRegTrashCan } from "react-icons/fa6";
+
 import { TaskStatusType } from "@/types/types";
 
 interface StatusListProps {
@@ -26,7 +26,7 @@ const StatusList = ({ taskListData }: StatusListProps) => {
                 className={StatusColorStyle}
                 style={{ backgroundColor: status?.color }}
               />
-              <span>{status?.label}</span>
+              <span className={StatusNameStyle}>{status?.label}</span>
             </div>
 
             {/* <FaRegTrashCan className={RemoveIconStyle} /> */}

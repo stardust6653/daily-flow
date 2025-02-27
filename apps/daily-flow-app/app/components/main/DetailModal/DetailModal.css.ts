@@ -69,6 +69,7 @@ export const SubTaskStyle = style({
 
 export const SubTaskContentStyle = style({
   display: "flex",
+  alignItems: "center",
   cursor: "pointer",
 });
 

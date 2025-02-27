@@ -5,7 +5,7 @@ export const AddStatusWrapperStyle = style({
   marginTop: themeVars.space.md,
   width: "50%",
   padding: "15px",
-  height: "286px",
+  height: "316px",
   border: `1px solid ${themeVars.colors.gray[300]}`,
   overflowY: "auto",
 });
@@ -37,11 +37,23 @@ export const StatusLabelStyle = style({
 });
 
 export const StatusColorStyle = style({
-  width: "6px",
+  minWidth: "6px",
   height: "6px",
   borderRadius: "50%",
   marginRight: "5px",
 });
+
+export const StatusNameStyle = style([
+  {
+    display: "block",
+    maxWidth: "300px", // 아이콘과 여백을 고려해 줄임
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    flex: "1", // 남은 공간을 모두 차지
+    minWidth: 0, // flexbox 내에서 축소 가능하도록 설정
+  },
+]);
 
 export const RemoveIconStyle = style({
   fontSize: themeVars.fontSizes.sm,

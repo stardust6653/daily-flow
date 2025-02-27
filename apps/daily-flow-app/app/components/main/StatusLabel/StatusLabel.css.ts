@@ -11,7 +11,8 @@ export const StatusLabelStyle = style([
     borderRadius: "10px 10px 0 0",
     color: themeVars.colors.base.white,
     fontSize: themeVars.fontSizes.md,
-    padding: "10px 15px",
+    padding: "0 15px",
+    height: "36px",
     lineHeight: "1.3",
   },
 ]);

@@ -31,10 +31,12 @@ export const AlertIconStyle = style({
 });
 
 export const DeleteButtonStyle = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   cursor: "pointer",
   width: "100%",
-  padding: "5px ",
-  textAlign: "center",
+  padding: "5px",
   color: themeVars.colors.state.error,
   border: `1px solid ${themeVars.colors.state.error}`,
   borderRadius: "5px",
@@ -48,7 +50,8 @@ export const DeleteButtonStyle = style({
 export const DeleteIconStyle = style({
   width: "12px",
   height: "12px",
-  marginRight: themeVars.space.sm,
+  marginBottom: "2px",
+  marginRight: themeVars.space.xs,
 });
 
 export const ColorChipStyle = style({

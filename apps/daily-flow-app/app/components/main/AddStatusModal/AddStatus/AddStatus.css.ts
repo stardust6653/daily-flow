@@ -10,7 +10,7 @@ export const AddStatusWrapperStyle = style({
   marginTop: themeVars.space.md,
   width: "50%",
   padding: "15px",
-  height: "286px",
+  height: "316px",
   border: `1px solid ${themeVars.colors.gray[300]}`,
 });
 

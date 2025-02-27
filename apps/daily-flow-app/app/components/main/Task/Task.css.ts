@@ -7,7 +7,7 @@ export const TaskStyle = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
-  height: "100px",
+  height: "120px",
   boxSizing: "border-box",
   padding: "10px 16px",
   marginBottom: "5px",

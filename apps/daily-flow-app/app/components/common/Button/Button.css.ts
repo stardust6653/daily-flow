@@ -8,6 +8,7 @@ const baseButtonStyle = style({
   transition: "all 0.2s ease-in-out",
   cursor: "pointer",
   border: "none",
+  textAlign: "center",
 });
 
 export const ButtonStyle = styleVariants({
