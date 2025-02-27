@@ -18,6 +18,7 @@ export const InputStyle = style({
   borderRadius: themeVars.radii.sm,
   backgroundColor: themeVars.colors.gray.accent,
   border: "none",
+  textAlign: "left",
 });
 
 export const ErrorMessageStyle = style({
