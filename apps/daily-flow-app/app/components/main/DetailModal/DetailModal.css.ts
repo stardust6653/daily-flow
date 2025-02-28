@@ -115,11 +115,17 @@ export const buttonStyle = style({
   marginRight: themeVars.space.sm,
 });
 
-export const SubTaskCheckButtonStyle = style([buttonStyle, {}]);
+export const SubTaskCheckButtonStyle = style([
+  buttonStyle,
+  {
+    marginBottom: "3px",
+  },
+]);
 
 export const SubTaskCheckCompleteButtonStyle = style([
   buttonStyle,
   {
+    marginBottom: "3px",
     backgroundColor: themeVars.colors.primary.lighter,
   },
 ]);

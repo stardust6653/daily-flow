@@ -38,6 +38,7 @@ export const SelectScheduleWrapperStyle = style({
 });
 
 export const SelectScheduleStyle = style({
+  width: "100%",
   marginBottom: themeVars.space.sm,
 });
 
@@ -48,6 +49,9 @@ export const SelectScheduleLabelStyle = style({
 });
 
 export const SelectScheduleInputStyle = style({
+  padding: "0 2px",
+  width: "100%",
+  fontSize: themeVars.fontSizes.sm,
   border: `1px solid ${themeVars.colors.gray[300]}`,
 });
 

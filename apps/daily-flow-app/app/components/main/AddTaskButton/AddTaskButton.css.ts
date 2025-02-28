@@ -6,7 +6,7 @@ export const AddTaskButtonStyle = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  height: "100px",
+  height: "120px",
   color: themeVars.colors.gray[400],
   backgroundColor: themeVars.colors.gray[100],
   fontSize: themeVars.fontSizes.xxxl,

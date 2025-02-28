@@ -33,6 +33,7 @@ export const SubTaskContentStyle = style({
 export const EraseButtonStyle = style({
   cursor: "pointer",
   fontSize: themeVars.fontSizes.sm,
+  marginBottom: "2px",
   color: themeVars.colors.gray[500],
 
   ":hover": {
