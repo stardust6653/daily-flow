@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { handleChange } from "@/utils/input";
 import { ErrorMessageStyle, InputFormStyle, InputStyle } from "./Input.css";
 
 interface InputProps {
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  setValue: (value: string) => void;
   errorMessage: string;
   placeholder: string;
   type: string;
@@ -19,6 +18,10 @@ const Input = ({
   type,
   label,
 }: InputProps) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div className={InputFormStyle}>
       <input
@@ -26,7 +29,8 @@ const Input = ({
         className={InputStyle}
         type={type}
         placeholder={placeholder}
-        onChange={(e) => handleChange<string>(e, setValue)}
+        onChange={handleInputChange}
+        autoComplete="off" // 비밀번호 저장 팝업 방지
       />
       <span className={ErrorMessageStyle}>{errorMessage}</span>
     </div>

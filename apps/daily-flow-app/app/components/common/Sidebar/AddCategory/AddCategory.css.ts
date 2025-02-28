@@ -12,6 +12,7 @@ export const AddCategoryStyle = style({
 });
 
 export const AddCategoryIconStyle = style({
+  marginBottom: "3px",
   display: "block",
   width: "10px",
   height: "10px",

@@ -6,7 +6,7 @@ export const AuthFormWrapperStyle = style({
   justifyContent: "space-between",
   alignItems: "center",
   backgroundColor: "white",
-  padding: "70px",
+  padding: "35px",
   width: "50%",
   height: "100%",
   borderRadius: "10px 0 0 10px ",

@@ -35,7 +35,11 @@ const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
   };
 
   return (
-    <form className={AuthFormWrapperStyle} onSubmit={(e) => e.preventDefault()}>
+    <form
+      className={AuthFormWrapperStyle}
+      onSubmit={(e) => e.preventDefault()}
+      autoComplete="off"
+    >
       <div className={LogoWrapperStyle}>
         <Logo color="color" margin="0 0 44px" />
       </div>

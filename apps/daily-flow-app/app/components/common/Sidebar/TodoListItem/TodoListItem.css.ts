@@ -6,6 +6,7 @@ export const TodoListItemColorChipStyle = style({
   width: "10px",
   height: "10px",
   borderRadius: "100%",
+  marginBottom: "2px",
   marginRight: themeVars.space.md,
   "::after": {
     content: " ",
