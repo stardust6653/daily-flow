@@ -26,16 +26,48 @@ export const DetailModalColorStyle = style({
   marginRight: themeVars.space.md,
 });
 
+export const DetailModalContentWrapper = style({
+  height: "364px",
+});
+
 export const OptionStyle = style({
   display: "flex",
   alignItems: "center",
   padding: "10px",
 });
 
-export const OptionNameStyle = style({
+export const MemoOptionStyle = style({
+  height: "200px",
   display: "flex",
-  width: "130px",
+  alignItems: "center",
+  padding: "10px",
+  overflow: "auto",
+});
+
+export const OptionNameStyle = style({
+  height: "100%",
+  display: "flex",
+  minWidth: "130px",
   color: themeVars.colors.gray[600],
+});
+
+export const MemoStyle = style({
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+});
+
+export const MemoContentStyle = style({
+  height: "100%",
+  display: "flex",
+  overflow: "auto",
+  flexDirection: "column",
+  justifyContent: "space-between",
+});
+
+export const MemoContentTextStyle = style({
+  display: "flex",
 });
 
 export const OptionIconStyle = style({
@@ -45,6 +77,7 @@ export const OptionIconStyle = style({
 });
 
 export const OptionContentStyle = style({
+  height: "100%",
   display: "flex",
   alignItems: "center",
   color: themeVars.colors.gray[700],

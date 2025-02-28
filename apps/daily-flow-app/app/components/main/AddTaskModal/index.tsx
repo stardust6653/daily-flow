@@ -53,6 +53,8 @@ const AddTaskModal = ({
     });
   }, [status_id]);
 
+  console.log(taskData);
+
   const handleCloseClick = () =>
     setIsModalOpen({
       isOpen: false,

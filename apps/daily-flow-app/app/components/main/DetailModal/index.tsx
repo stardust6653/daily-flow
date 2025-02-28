@@ -5,9 +5,14 @@ import {
   ColorChipStyle,
   CompleteButtonStyle,
   DetailModalColorStyle,
+  DetailModalContentWrapper,
   DetailModalHeaderWrapperStyle,
   DetailModalStyle,
   LineStyle,
+  MemoContentStyle,
+  MemoContentTextStyle,
+  MemoOptionStyle,
+  MemoStyle,
   OptionContentStyle,
   OptionIconStyle,
   OptionNameStyle,
@@ -96,7 +101,7 @@ const DetailModal = ({
           />
         </div>
 
-        <div>
+        <div className={DetailModalContentWrapper}>
           <div className={OptionStyle}>
             <p className={OptionNameStyle}>
               <LuCircleCheckBig className={OptionIconStyle} />
@@ -160,12 +165,21 @@ const DetailModal = ({
 
           <div className={LineStyle} />
 
-          <div className={OptionStyle}>
-            <p className={OptionNameStyle}>
-              <CiMemoPad className={OptionIconStyle} />
-              <span>메모</span>
-            </p>
-            <p className={OptionContentStyle}>{task?.memo}</p>
+          <div className={MemoOptionStyle}>
+            <div className={MemoStyle}>
+              <div className={OptionNameStyle}>
+                <span className={MemoContentTextStyle}>
+                  <span>
+                    <CiMemoPad
+                      className={OptionIconStyle}
+                      style={{ marginTop: "2px" }}
+                    />
+                  </span>
+                  <span>메모</span>
+                </span>
+              </div>
+            </div>
+            <p className={MemoContentStyle}>{task?.memo}</p>
           </div>
         </div>
       </div>

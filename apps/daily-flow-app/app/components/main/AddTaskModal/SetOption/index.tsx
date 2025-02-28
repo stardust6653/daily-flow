@@ -169,6 +169,10 @@ const SetOption = ({
                   });
                   setStatusId(status?.id as string);
                   setIsStatusOpen(false);
+                  setTaskData({
+                    ...taskData,
+                    status_id: status?.id as string,
+                  });
                 }}
               >
                 <span

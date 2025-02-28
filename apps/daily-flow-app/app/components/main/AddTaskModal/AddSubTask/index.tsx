@@ -23,8 +23,6 @@ const AddSubTask = ({ taskData, setTaskData }: AddSubTaskProps) => {
     (a, b) => +(b?.id ?? 0) - +(a?.id ?? 0)
   );
 
-  console.log(subTaskList);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputTask(e.target.value);
 
