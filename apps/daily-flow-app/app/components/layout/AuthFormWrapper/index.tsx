@@ -47,12 +47,13 @@ const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
       <div>{children}</div>
       <div className={AuthButtonStyle}>
         {type === "signin" && (
-          <AccountRecoveryLink
-            href="/forgot-password/verify-email"
-            margin="10px 0 0"
-          >
-            비밀번호를 잊으셨나요?
-          </AccountRecoveryLink>
+          <></>
+          // <AccountRecoveryLink
+          //   href="/forgot-password/verify-email"
+          //   margin="10px 0 0"
+          // >
+          //   비밀번호를 잊으셨나요?
+          // </AccountRecoveryLink>
         )}
 
         <Button
