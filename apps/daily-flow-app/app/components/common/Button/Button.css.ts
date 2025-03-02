@@ -36,3 +36,14 @@ export const ButtonStyle = styleVariants({
     },
   ],
 });
+
+export const DisabledStyle = styleVariants({
+  true: {
+    cursor: "not-allowed",
+    opacity: 0.5,
+  },
+  false: {
+    cursor: "pointer",
+    opacity: 1,
+  },
+});

@@ -7,6 +7,7 @@ export const handleChange = <T>(
   setter(e.target.value as T);
 };
 
+// 이메일 유효성 검사
 export const isEmailValid = (email: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -18,6 +19,17 @@ export const isPasswordValid = (password: string) => {
   return specialCharRegex.test(password);
 };
 
+// 비밀번호 확인 일치 검사
+export const doPasswordsMatch = <T extends Record<string, string>>(data: T) => {
+  return data.password === data.confirmed_password;
+};
+
+// 폼 데이터 업데이트 함수
+// T: 폼 데이터 타입
+// K: 폼 데이터의 키 타입
+// value: 업데이트할 값
+// key: 업데이트할 키
+// setter: 폼 데이터 상태 업데이트 함수
 export const setFormData = <T extends Record<string, any>, K extends keyof T>(
   value: T[K],
   key: K,
@@ -29,11 +41,19 @@ export const setFormData = <T extends Record<string, any>, K extends keyof T>(
   }));
 };
 
+// 벨리데이터 생성 함수
+// rules: 벨리데이터 규칙 배열
+export const createValidator = (rules) => {
+  return (data) => rules.every((rule) => rule.test(data));
+};
+
+// 이메일 에러 메시지 반환 함수
 export const getEmailErrorMessage = (data: Record<string, any>) =>
   !data.email || isEmailValid(data.email)
     ? ""
     : "올바른 형식의 이메일이 아닙니다";
 
+// 비밀번호 에러 메시지 반환 함수
 export const getPasswordErrorMessage = (data: Record<string, any>) =>
   !data.password || isPasswordValid(data.password)
     ? ""
