@@ -1,4 +1,3 @@
-import AccountRecoveryLink from "../../common/AccountRecoveryLink";
 import Button from "../../common/Button";
 import Logo from "../../common/Logo";
 import {
@@ -11,28 +10,23 @@ interface AuthFormWrapperProps {
   children: React.ReactNode;
   type: "signin" | "signup" | "forgotPassword" | "changePassword";
   onClick: () => void;
+  isValid: boolean;
 }
 
-const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
-  const buttonText = (authType: string) => {
-    switch (authType) {
-      case "signin":
-        return "로그인";
-        break;
-      case "signup":
-        return "가입";
-        break;
-      case "forgotPassword":
-        return "인증";
-        break;
-      case "changePassword":
-        return "변경";
-        break;
-      default:
-        return "버튼";
-        break;
-    }
+const AuthFormWrapper = ({
+  children,
+  type,
+  onClick,
+  isValid,
+}: AuthFormWrapperProps) => {
+  const buttonTextMap = {
+    signin: "로그인",
+    signup: "가입",
+    forgotPassword: "인증",
+    changePassword: "변경",
   };
+
+  const buttonText = buttonTextMap[type] || "버튼";
 
   return (
     <form
@@ -57,7 +51,8 @@ const AuthFormWrapper = ({ children, type, onClick }: AuthFormWrapperProps) => {
         )}
 
         <Button
-          text={buttonText(type)}
+          isValid={isValid}
+          text={buttonText}
           type="primary"
           onClick={onClick}
           margin="20px 0 0"
