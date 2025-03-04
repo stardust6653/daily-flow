@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import api from "@/app/api/axios";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { getEmailErrorMessage, setFormData } from "@/utils/input";
+import { createValidator, rules } from "@/utils/validator";
 
 const AuthForm: React.FC = () => {
   const [signinData, setSigninData] = useState({
@@ -18,6 +19,13 @@ const AuthForm: React.FC = () => {
 
   const { login } = useAuth();
   const router = useRouter();
+
+  const isSignInValid = createValidator([
+    rules.email("email"),
+    rules.required("password"),
+  ]);
+
+  const isSigninValid = isSignInValid(signinData);
 
   const onClick = async () => {
     try {
@@ -35,7 +43,7 @@ const AuthForm: React.FC = () => {
   };
 
   return (
-    <AuthFormWrapper onClick={onClick} type="signin">
+    <AuthFormWrapper onClick={onClick} type="signin" isValid={isSigninValid}>
       <Input
         setValue={(value: string) => setFormData(value, "email", setSigninData)}
         errorMessage={getEmailErrorMessage(signinData)}

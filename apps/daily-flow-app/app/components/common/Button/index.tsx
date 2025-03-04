@@ -8,7 +8,13 @@ interface ButtonProps {
   isValid?: boolean;
 }
 
-const Button = ({ text, onClick, margin, type, isValid }: ButtonProps) => {
+const Button = ({
+  text,
+  onClick,
+  margin,
+  type,
+  isValid = true,
+}: ButtonProps) => {
   return (
     <button
       className={`${ButtonStyle[type]} ${DisabledStyle[isValid ? "false" : "true"]}`}
