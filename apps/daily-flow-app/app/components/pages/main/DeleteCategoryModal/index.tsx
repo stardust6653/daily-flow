@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import ModalHeader from "../../common/ModalHeader";
+import ModalHeader from "../../../common/ModalHeader";
 import { FaTrashCan } from "react-icons/fa6";
 import {
   AlertIconStyle,

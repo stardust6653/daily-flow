@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import AuthFormWrapper from "../../layout/AuthFormWrapper";
-import Input from "../../common/Input";
+import AuthFormWrapper from "../../../layout/AuthFormWrapper";
+import Input from "../../../common/Input";
 import { useState } from "react";
 
 const ChangePasswordForm = () => {

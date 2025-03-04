@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import AuthFormWrapper from "../../layout/AuthFormWrapper";
-import Input from "../../common/Input";
+import AuthFormWrapper from "../../../layout/AuthFormWrapper";
+import Input from "../../../common/Input";
 import { VerifyEmailFormLabelStyle } from "./VerifyEmailForm.css";
 import { useRouter } from "next/navigation";
 

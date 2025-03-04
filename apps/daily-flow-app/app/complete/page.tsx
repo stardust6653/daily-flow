@@ -1,7 +1,7 @@
 import Banner from "../components/common/Banner";
 import LayoutWrapper from "../components/layout/LayoutWrapper";
-import AuthForm from "../components/home/AuthForm";
-import AuthWrapper from "../components/home/AuthWrapper";
+import AuthForm from "../components/pages/home/AuthForm";
+import AuthWrapper from "../components/pages/home/AuthWrapper";
 
 const CompletePage = () => {
   return (

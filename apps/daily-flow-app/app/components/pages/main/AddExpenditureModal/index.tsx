@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Button from "../../common/Button";
-import ModalHeader from "../../common/ModalHeader";
+import Button from "../../../common/Button";
+import ModalHeader from "../../../common/ModalHeader";
 import {
   AddExpenditureInputStyle,
   AddExpenditureInputWrapperStyle,

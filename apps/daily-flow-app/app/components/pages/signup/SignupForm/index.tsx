@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Input from "@/app/components/common/Input";
-
-import AuthFormWrapper from "../../layout/AuthFormWrapper";
+import AuthFormWrapper from "../../../layout/AuthFormWrapper";
 import { setFormData } from "@/utils/input";
 import api from "@/app/api/axios";
 import { useRouter } from "next/navigation";
@@ -26,38 +25,38 @@ const SignupForm = () => {
     rules.matches("password", "confirmed_password"),
   ]);
 
-  const isSignupValidWithError = isSignupFormValidWithError(signupData);
-
-  console.log("isSignupValidWithError", isSignupValidWithError);
-
   const formFields = [
     {
       setValue: (value: string) => setFormData(value, "email", setSignupData),
-      errorMessage: error ? error : isSignupValidWithError.errors["email"],
-      placeholder: "Email",
+      errorMessage: error
+        ? error
+        : isSignupFormValidWithError(signupData).errors["email"],
+      placeholder: "이메일",
       type: "email",
     },
     {
       setValue: (value: string) =>
         setFormData(value, "nickname", setSignupData),
       errorMessage: "",
-      placeholder: "Nickname",
+      placeholder: "별명",
       type: "text",
     },
     {
       setValue: (value: string) =>
         setFormData(value, "password", setSignupData),
-      errorMessage: isSignupValidWithError.errors["password"],
-      placeholder: "Password",
+      errorMessage: isSignupFormValidWithError(signupData).errors["password"],
+      placeholder: "비밀번호",
       type: "password",
     },
     {
       setValue: (value: string) =>
         setFormData(value, "confirmed_password", setSignupData),
-      errorMessage: isSignupValidWithError.errors["password-confirm"]
+      errorMessage: isSignupFormValidWithError(signupData).errors[
+        "password-confirm"
+      ]
         ? ""
         : "비밀번호가 일치하지 않습니다",
-      placeholder: "Password Confirmed",
+      placeholder: "비밀번호 확인",
       type: "password",
     },
   ];
@@ -88,7 +87,7 @@ const SignupForm = () => {
     <AuthFormWrapper
       onClick={handleSubmit}
       type="signup"
-      isValid={isSignupValidWithError.isValid}
+      isValid={isSignupFormValidWithError(signupData).isValid}
     >
       {formFields.map((field, index) => (
         <Input

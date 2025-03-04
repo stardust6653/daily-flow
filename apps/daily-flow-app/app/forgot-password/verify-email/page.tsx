@@ -1,7 +1,7 @@
 import Banner from "../../components/common/Banner";
 import LayoutWrapper from "../../components/layout/LayoutWrapper";
-import VerifyEmailForm from "../../components/forgot-password/VerifyEmailForm";
-import AuthWrapper from "../../components/home/AuthWrapper";
+import VerifyEmailForm from "../../components/pages/forgot-password/VerifyEmailForm";
+import AuthWrapper from "../../components/pages/home/AuthWrapper";
 
 const ForgotPasswordPage = () => {
   return (

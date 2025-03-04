@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import ModalHeader from "../../common/ModalHeader";
+import ModalHeader from "../../../common/ModalHeader";
 import { useSearchParams } from "next/navigation";
 import {
   ColorChipStyle,
@@ -30,7 +30,7 @@ import { FaTasks } from "react-icons/fa";
 import { CiMemoPad } from "react-icons/ci";
 import { SubTaskType, TaskStatusType, TaskType } from "@/types/types";
 import api from "@/app/api/axios";
-import Button from "../../common/Button";
+import Button from "../../../common/Button";
 
 interface DetailModalProps {
   refreshData: () => void;

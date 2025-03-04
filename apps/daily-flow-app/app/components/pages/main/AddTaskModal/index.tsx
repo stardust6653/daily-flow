@@ -6,9 +6,9 @@ import {
   AddTaskModalStyle,
   AddWrapperStyle,
 } from "./AddTaskModal.css";
-import ModalHeader from "../../common/ModalHeader";
+import ModalHeader from "../../../common/ModalHeader";
 
-import Button from "../../common/Button";
+import Button from "../../../common/Button";
 import AddSubTask from "./AddSubTask";
 import AddMemo from "./AddMemo";
 import SetOption from "./SetOption";

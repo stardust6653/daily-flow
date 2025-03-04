@@ -2,19 +2,19 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Sidebar from "../components/common/Sidebar";
-import MainSection from "../components/main/MainSection";
+import MainSection from "../components/pages/main/MainSection";
 import PageWrapper from "../components/layout/PageWrapper";
 import Modal from "../components/common/Modal";
-import AddTaskModal from "../components/main/AddTaskModal";
-import AddStatusModal from "../components/main/AddStatusModal";
-import AddExpenditureModal from "../components/main/AddExpenditureModal";
+import AddTaskModal from "../components/pages/main/AddTaskModal";
+import AddStatusModal from "../components/pages/main/AddStatusModal";
+import AddExpenditureModal from "../components/pages/main/AddExpenditureModal";
 import AddCategoryModal from "../components/common/Sidebar/AddCategoryModal";
-import DetailModal from "../components/main/DetailModal";
+import DetailModal from "../components/pages/main/DetailModal";
 import { PrivateRoute } from "../components/auth/PrivateRoute";
 import { useCategories } from "@/hooks/useCategories";
 import { useTasks } from "@/hooks/useTasks";
 import { useTaskStatus } from "@/hooks/useTaskStatus";
-import DeleteCategoryModal from "../components/main/DeleteCategoryModal";
+import DeleteCategoryModal from "../components/pages/main/DeleteCategoryModal";
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState({

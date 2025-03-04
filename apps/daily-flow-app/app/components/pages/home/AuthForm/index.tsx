@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Input from "../../common/Input";
-import AuthFormWrapper from "../../layout/AuthFormWrapper";
+import Input from "../../../common/Input";
+import AuthFormWrapper from "../../../layout/AuthFormWrapper";
 import { useRouter } from "next/navigation";
 import api from "@/app/api/axios";
 import { useAuth } from "@/app/contexts/AuthContext";

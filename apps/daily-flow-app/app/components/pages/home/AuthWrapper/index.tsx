@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import LayoutWrapper from "../../layout/LayoutWrapper";
+import LayoutWrapper from "../../../layout/LayoutWrapper";
 
 const AuthWrapper = ({ children }: { children: ReactNode }) => {
   return (
