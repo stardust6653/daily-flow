@@ -41,12 +41,6 @@ export const setFormData = <T extends Record<string, any>, K extends keyof T>(
   }));
 };
 
-// 벨리데이터 생성 함수
-// rules: 벨리데이터 규칙 배열
-export const createValidator = (rules) => {
-  return (data) => rules.every((rule) => rule.test(data));
-};
-
 // 이메일 에러 메시지 반환 함수
 export const getEmailErrorMessage = (data: Record<string, any>) =>
   !data.email || isEmailValid(data.email)

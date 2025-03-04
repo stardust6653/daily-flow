@@ -6,11 +6,16 @@ import AuthFormWrapper from "../../../layout/AuthFormWrapper";
 import { useRouter } from "next/navigation";
 import api from "@/app/api/axios";
 import { useAuth } from "@/app/_core/contexts/AuthContext";
-import { getEmailErrorMessage, setFormData } from "@/app/_core/utils/input";
-import { createValidator, rules } from "@/app/_core/utils/validator";
+import { createValidatorWithError, rules } from "@/app/_core/utils/validator";
+import { signinFormConfig } from "@/app/_core/config/auth/signinFormConfig";
+
+export interface SigninDataType {
+  email: string;
+  password: string;
+}
 
 const AuthForm: React.FC = () => {
-  const [signinData, setSigninData] = useState({
+  const [signinData, setSigninData] = useState<SigninDataType>({
     email: "",
     password: "",
   });
@@ -20,12 +25,17 @@ const AuthForm: React.FC = () => {
   const { login } = useAuth();
   const router = useRouter();
 
-  const isSignInValid = createValidator([
+  const isSignInValid = createValidatorWithError([
     rules.email("email"),
     rules.required("password"),
   ]);
 
-  const isSigninValid = isSignInValid(signinData);
+  const formFields = signinFormConfig(
+    isSignInValid,
+    signinData,
+    setSigninData,
+    error
+  );
 
   const onClick = async () => {
     try {
@@ -43,21 +53,20 @@ const AuthForm: React.FC = () => {
   };
 
   return (
-    <AuthFormWrapper onClick={onClick} type="signin" isValid={isSigninValid}>
-      <Input
-        setValue={(value: string) => setFormData(value, "email", setSigninData)}
-        errorMessage={getEmailErrorMessage(signinData)}
-        placeholder="Email"
-        type="email"
-      />
-      <Input
-        setValue={(value: string) =>
-          setFormData(value, "password", setSigninData)
-        }
-        errorMessage={error}
-        placeholder="Password"
-        type="password"
-      />
+    <AuthFormWrapper
+      onClick={onClick}
+      type="signin"
+      isValid={isSignInValid(signinData).isValid}
+    >
+      {formFields.map((field, index) => (
+        <Input
+          key={index}
+          setValue={field.setValue}
+          errorMessage={field.errorMessage ?? ""}
+          placeholder={field.placeholder}
+          type={field.type}
+        />
+      ))}
     </AuthFormWrapper>
   );
 };
