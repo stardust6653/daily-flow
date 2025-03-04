@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DataType = Record<string, any>;
 
 interface ResultType {
@@ -39,11 +40,16 @@ export const rules: RulesType = {
     message: `비밀번호는 특수문자를 포함해야 합니다`,
     field,
   }),
-  minLength: (field: string, length: number) => ({
-    test: (data: DataType) => (data[field] || "").length >= length,
-    message: `${field}은(는) ${length}자 이상이어야 합니다`,
-    field,
-  }),
+  minLength: (field: string, length: number) => {
+    // 무엇이 추가 될 지 몰라 별명 필드만 처리
+    const fieldName = field === "nickname" ? "별명" : field;
+
+    return {
+      test: (data: DataType) => (data[field] || "").length >= length,
+      message: `${fieldName}은(는) ${length}자 이상이어야 합니다`,
+      field,
+    };
+  },
   matches: (field1: string, field2: string) => ({
     test: (data: DataType) => data[field1] === data[field2],
     message: `${field1}와 ${field2}가 일치하지 않습니다`,
@@ -70,4 +76,11 @@ export const createValidatorWithError = (rules: ExtendedResultType[]) => {
 
     return { isValid, errors };
   };
+};
+
+export const getFieldErrorMessage = (
+  errorMessage: string,
+  fieldData: string
+) => {
+  return fieldData === "" ? "" : errorMessage;
 };
