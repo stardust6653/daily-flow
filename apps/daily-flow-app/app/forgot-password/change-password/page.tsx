@@ -1,7 +1,7 @@
-import Banner from "@/app/components/common/Banner";
-import LayoutWrapper from "@/app/components/layout/LayoutWrapper";
-import ChangePasswordForm from "@/app/components/pages/forgot-password/ChangePasswordForm";
-import AuthWrapper from "@/app/components/pages/home/AuthWrapper";
+import Banner from "@/app/_core/components/common/Banner";
+import LayoutWrapper from "@/app/_core/components/layout/LayoutWrapper";
+import ChangePasswordForm from "@/app/_core/components/pages/forgot-password/ChangePasswordForm";
+import AuthWrapper from "@/app/_core/components/pages/home/AuthWrapper";
 
 const ChangePasswordPage = () => {
   return (

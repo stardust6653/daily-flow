@@ -1,7 +1,7 @@
-import Banner from "../components/common/Banner";
-import LayoutWrapper from "../components/layout/LayoutWrapper";
-import AuthWrapper from "../components/pages/home/AuthWrapper";
-import SignupForm from "../components/pages/signup/SignupForm";
+import Banner from "../_core/components/common/Banner";
+import LayoutWrapper from "../_core/components/layout/LayoutWrapper";
+import AuthWrapper from "../_core/components/pages/home/AuthWrapper";
+import SignupForm from "../_core/components/pages/signup/SignupForm";
 
 const SignUpPage = () => {
   return (

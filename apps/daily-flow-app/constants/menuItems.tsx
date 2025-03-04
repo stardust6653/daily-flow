@@ -3,7 +3,7 @@
 import {
   SideMenuIconStyle,
   SideMenuItemStyle,
-} from "@/app/components/common/Sidebar/SideMenuList/SideMenuList.css";
+} from "@/app/_core/components/common/Sidebar/SideMenuList/SideMenuList.css";
 import { CiCalendar } from "react-icons/ci";
 import { IoAnalytics } from "react-icons/io5";
 

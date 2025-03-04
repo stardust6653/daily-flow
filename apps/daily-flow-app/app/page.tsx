@@ -1,9 +1,9 @@
 "use client";
 
-import Banner from "./components/common/Banner";
-import LayoutWrapper from "./components/layout/LayoutWrapper";
-import AuthForm from "./components/pages/home/AuthForm";
-import AuthWrapper from "./components/pages/home/AuthWrapper";
+import Banner from "./_core/components/common/Banner";
+import LayoutWrapper from "./_core/components/layout/LayoutWrapper";
+import AuthForm from "./_core/components/pages/home/AuthForm";
+import AuthWrapper from "./_core/components/pages/home/AuthWrapper";
 
 export default function Home() {
   return (
