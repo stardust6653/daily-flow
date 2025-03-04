@@ -3,16 +3,23 @@
 import { useState } from "react";
 import Input from "@/app/_core/components/common/Input";
 import AuthFormWrapper from "../../../layout/AuthFormWrapper";
-import { setFormData } from "@/app/_core/utils/input";
 import api from "@/app/api/axios";
 import { useRouter } from "next/navigation";
 import { createValidatorWithError, rules } from "@/app/_core/utils/validator";
+import { signupFormConfig } from "@/app/_core/config/auth/signupFormConfig";
+
+export interface SignupDataType {
+  email: string;
+  password: string;
+  confirmed_password: string;
+  nickname: string;
+}
 
 const SignupForm = () => {
   const router = useRouter();
 
   const [error, setError] = useState("");
-  const [signupData, setSignupData] = useState({
+  const [signupData, setSignupData] = useState<SignupDataType>({
     email: "",
     password: "",
     confirmed_password: "",
@@ -23,43 +30,15 @@ const SignupForm = () => {
     rules.email("email"),
     rules.password("password"),
     rules.matches("password", "confirmed_password"),
+    rules.minLength("nickname", 2),
   ]);
 
-  const formFields = [
-    {
-      setValue: (value: string) => setFormData(value, "email", setSignupData),
-      errorMessage: error
-        ? error
-        : isSignupFormValidWithError(signupData).errors["email"],
-      placeholder: "이메일",
-      type: "email",
-    },
-    {
-      setValue: (value: string) =>
-        setFormData(value, "nickname", setSignupData),
-      errorMessage: "",
-      placeholder: "별명",
-      type: "text",
-    },
-    {
-      setValue: (value: string) =>
-        setFormData(value, "password", setSignupData),
-      errorMessage: isSignupFormValidWithError(signupData).errors["password"],
-      placeholder: "비밀번호",
-      type: "password",
-    },
-    {
-      setValue: (value: string) =>
-        setFormData(value, "confirmed_password", setSignupData),
-      errorMessage: isSignupFormValidWithError(signupData).errors[
-        "password-confirm"
-      ]
-        ? ""
-        : "비밀번호가 일치하지 않습니다",
-      placeholder: "비밀번호 확인",
-      type: "password",
-    },
-  ];
+  const formFields = signupFormConfig(
+    isSignupFormValidWithError,
+    signupData,
+    setSignupData,
+    error
+  );
 
   const handleSubmit = async () => {
     await api
