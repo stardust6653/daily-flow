@@ -13,7 +13,10 @@ export const handleChange = <T>(
 // value: 업데이트할 값
 // key: 업데이트할 키
 // setter: 폼 데이터 상태 업데이트 함수
-export const setFormData = <T extends Record<string, any>, K extends keyof T>(
+export const setFormData = <
+  T extends Record<string, unknown>,
+  K extends keyof T,
+>(
   value: T[K],
   key: K,
   setter: Dispatch<SetStateAction<T>>

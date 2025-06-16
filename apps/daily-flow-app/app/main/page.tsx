@@ -4,18 +4,14 @@ import { useCallback, useEffect, useState } from "react";
 import Sidebar from "../_core/components/common/Sidebar";
 import MainSection from "../_core/components/pages/main/MainSection";
 import PageWrapper from "../_core/components/layout/PageWrapper";
-import Modal from "../_core/components/common/Modal";
-import AddTaskModal from "../_core/components/pages/main/AddTaskModal";
-import AddStatusModal from "../_core/components/pages/main/AddStatusModal";
-import AddExpenditureModal from "../_core/components/pages/main/AddExpenditureModal";
-import AddCategoryModal from "../_core/components/common/Sidebar/AddCategoryModal";
-import DetailModal from "../_core/components/pages/main/DetailModal";
 import { PrivateRoute } from "../_core/components/auth/PrivateRoute";
 import { useCategories } from "@/hooks/useCategories";
 import { useTasks } from "@/hooks/useTasks";
 import { useTaskStatus } from "@/hooks/useTaskStatus";
-import DeleteCategoryModal from "../_core/components/pages/main/DeleteCategoryModal";
 import { ModalType } from "@/types/task";
+import ModalRenderer, {
+  getModalProps,
+} from "../_core/components/pages/main/ModalRenderer";
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<ModalType>({
@@ -32,7 +28,6 @@ const MainPage = () => {
   const { tasks } = useTasks(selectedCategory, refreshTrigger);
 
   const refreshData = useCallback(() => {
-    console.log("refreshData 호출됨");
     setRefreshTrigger((prev) => prev + 1);
   }, []);
 
@@ -41,6 +36,16 @@ const MainPage = () => {
       setSelectedCategory(categories[0].id);
     }
   }, [categories]);
+
+  const modalProps = getModalProps(isModalOpen.type, {
+    refreshData,
+    taskStatuses,
+    setIsModalOpen,
+    selectedCategory,
+    tasks,
+    categories,
+    taskId: isModalOpen.taskId,
+  });
 
   return (
     <PrivateRoute>
@@ -58,79 +63,7 @@ const MainPage = () => {
           selectedCategory={selectedCategory}
           setIsModalOpen={setIsModalOpen}
         />
-        {isModalOpen.type === "addTask" && isModalOpen.isOpen && (
-          <Modal size="large">
-            <AddTaskModal
-              refreshData={refreshData}
-              taskStatuses={taskStatuses}
-              setIsModalOpen={setIsModalOpen}
-              selectedCategory={selectedCategory}
-            />
-          </Modal>
-        )}
-
-        {isModalOpen.type === "update" && isModalOpen.isOpen && (
-          <Modal size="large">
-            <AddTaskModal
-              refreshData={refreshData}
-              taskStatuses={taskStatuses}
-              setIsModalOpen={setIsModalOpen}
-              selectedCategory={selectedCategory}
-              updateTaskItem={tasks.find((t) => t.id === isModalOpen.taskId)}
-            />
-          </Modal>
-        )}
-
-        {isModalOpen.type === "addStatus" && isModalOpen.isOpen && (
-          <Modal size="large">
-            <AddStatusModal
-              refreshData={refreshData}
-              selectedCategory={selectedCategory}
-              taskStatuses={taskStatuses}
-              setIsModalOpen={setIsModalOpen}
-            />
-          </Modal>
-        )}
-
-        {isModalOpen.type === "addExpenditure" && isModalOpen.isOpen && (
-          <Modal size="small">
-            <AddExpenditureModal
-              setIsModalOpen={setIsModalOpen}
-              refreshData={refreshData}
-            />
-          </Modal>
-        )}
-
-        {isModalOpen.type === "addCategory" && isModalOpen.isOpen && (
-          <Modal size="small">
-            <AddCategoryModal
-              setIsModalOpen={setIsModalOpen}
-              refreshData={refreshData}
-            />
-          </Modal>
-        )}
-
-        {isModalOpen.type === "detail" && isModalOpen.isOpen && (
-          <Modal size="large">
-            <DetailModal
-              refreshData={refreshData}
-              tasks={tasks}
-              taskStatuses={taskStatuses}
-              setIsModalOpen={setIsModalOpen}
-            />
-          </Modal>
-        )}
-
-        {isModalOpen.type === "deleteCategory" && isModalOpen.isOpen && (
-          <Modal size="small">
-            <DeleteCategoryModal
-              refreshData={refreshData}
-              setIsModalOpen={setIsModalOpen}
-              categories={categories}
-              selectedCategory={selectedCategory}
-            />
-          </Modal>
-        )}
+        <ModalRenderer isModalOpen={isModalOpen} modalProps={modalProps} />
       </PageWrapper>
     </PrivateRoute>
   );
