@@ -109,12 +109,6 @@ const AddTaskModal = ({
         })),
       };
 
-      console.log("전송할 데이터:", {
-        url: isUpdate ? `/tasks/${updateTaskItem?.id}` : "/tasks",
-        method: isUpdate ? "PUT" : "POST",
-        data: dataToSend,
-      });
-
       if (isUpdate && updateTaskItem?.id) {
         await api.put(`/tasks/${updateTaskItem.id}`, dataToSend);
       } else {
