@@ -1,10 +1,11 @@
 import MainTitle from "../MainTitle";
 import { MainSectionListStyle, MainSectionStyle } from "./MainSection.css";
 import TaskList from "../TaskList";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AddStatusButton from "../AddStatusButton";
 import { CategoryType, TaskStatusType, TaskType } from "@/types/types";
 import CompleteTaskList from "../CompleteTaskList";
+import { ModalType } from "@/types/task";
 
 interface MainSectionProps {
   taskStatus: TaskStatusType[];
@@ -12,7 +13,7 @@ interface MainSectionProps {
   selectedCategory: string;
   tasks: TaskType[];
   refreshData: () => void;
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
 }
 
 const MainSection = ({
@@ -27,11 +28,24 @@ const MainSection = ({
     (item) => item.id === selectedCategory
   );
 
+  const [totalExpenditure, setTotalExpenditure] = useState(0);
+
+  useEffect(() => {
+    const total = tasks.reduce(
+      (sum, task) =>
+        task.complete ? sum + Number(task.expenditure || 0) : sum,
+      0
+    );
+
+    setTotalExpenditure(total);
+  }, [tasks]);
+
   return (
     <>
       <section className={MainSectionStyle}>
         {selectedCategoryData && (
           <MainTitle
+            expenditure={totalExpenditure}
             data={selectedCategoryData}
             setIsModalOpen={setIsModalOpen}
           />
