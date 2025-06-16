@@ -32,4 +32,8 @@ export class SubTasksService {
   async delete(id: string) {
     await this.subTasksRepository.delete(id);
   }
+
+  async deleteByTaskId(taskId: string) {
+    await this.subTasksRepository.delete({ task_id: taskId });
+  }
 }
