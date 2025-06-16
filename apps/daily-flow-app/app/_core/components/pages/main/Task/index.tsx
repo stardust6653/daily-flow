@@ -1,11 +1,12 @@
 import SubTaskMark from "../SubTaskMark";
 import TaskType from "../TaskType";
 import TaskContent from "../TaskContent";
-import { TaskStyle } from "./Task.css";
+import { TaskStyle, EditButtonStyle } from "./Task.css";
 import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import { TaskStatusType, TaskType as TaskItemType } from "@/types/types";
 import DeleteModal from "../DeleteModal";
+import { ModalType } from "@/types/task";
 
 interface TaskProps {
   data: TaskStatusType;
@@ -15,7 +16,7 @@ interface TaskProps {
   >;
   isDeleteModalOpen: { task: string; isOpen: boolean };
   refreshData: () => void;
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
 }
 
 const Task = ({
@@ -30,7 +31,7 @@ const Task = ({
 
   const handleClick = () => {
     router.push(`/main?id=${item?.id}`);
-    setIsModalOpen({ isOpen: true, type: "detail" });
+    setIsModalOpen({ isOpen: true, type: "detail", taskId: item.id });
   };
 
   const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -50,6 +51,15 @@ const Task = ({
         onClick={handleClick}
         onContextMenu={handleContextMenu}
       >
+        <button
+          className={EditButtonStyle}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsModalOpen({ isOpen: true, type: "update", taskId: item.id });
+          }}
+        >
+          수정
+        </button>
         <TaskContent item={item} refreshData={refreshData} />
         <TaskType item={item} />
         {item?.subtasks?.length > 0 && <SubTaskMark data={data} />}

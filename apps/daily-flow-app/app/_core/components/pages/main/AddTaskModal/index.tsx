@@ -13,14 +13,16 @@ import AddSubTask from "./AddSubTask";
 import AddMemo from "./AddMemo";
 import SetOption from "./SetOption";
 import { useSearchParams } from "next/navigation";
-import { TaskFormData, TaskStatusType } from "@/types/types";
+import { TaskFormData, TaskStatusType, TaskType } from "@/types/types";
 import api from "@/app/api/axios";
+import { ModalType } from "@/types/task";
 
 interface AddTaskModalProps {
   taskStatuses: TaskStatusType[];
   selectedCategory: string;
   refreshData: () => void;
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
+  updateTaskItem?: TaskType;
 }
 
 const AddTaskModal = ({
@@ -28,37 +30,62 @@ const AddTaskModal = ({
   setIsModalOpen,
   taskStatuses,
   refreshData,
+  updateTaskItem,
 }: AddTaskModalProps) => {
   const searchParams = useSearchParams();
   const status_id = searchParams.get("status_id");
 
-  const [statusId, setStatusId] = useState<string>(status_id as string);
+  const [statusId, setStatusId] = useState<string>(status_id ? status_id : "");
+
+  const isUpdate = !!updateTaskItem;
 
   const [taskData, setTaskData] = useState<TaskFormData>({
-    main_task: "",
-    subtasks: [],
-    memo: "",
-    category_id: selectedCategory,
-    status_id: statusId,
-    type: "task",
-    period: "",
-    complete: false,
-    expenditure: 0,
+    main_task: updateTaskItem?.main_task || "",
+    subtasks: updateTaskItem?.subtasks || [],
+    memo: updateTaskItem?.memo || "",
+    category_id: String(
+      (updateTaskItem?.category_id ?? selectedCategory) || ""
+    ),
+    status_id: String((updateTaskItem?.status_id ?? statusId) || ""),
+    type: updateTaskItem?.type || "task",
+    period: updateTaskItem?.period || "",
+    complete: updateTaskItem?.complete || false,
+    expenditure: updateTaskItem?.expenditure
+      ? Number(updateTaskItem.expenditure)
+      : 0,
   });
 
   useEffect(() => {
-    setTaskData({
-      ...taskData,
-      status_id,
-    });
+    if (!isUpdate) {
+      setTaskData((prev) => ({
+        ...prev,
+        status_id,
+      }));
+    }
   }, [status_id]);
 
-  console.log(taskData);
+  useEffect(() => {
+    if (isUpdate && updateTaskItem) {
+      setTaskData({
+        main_task: updateTaskItem.main_task,
+        subtasks: updateTaskItem.subtasks,
+        memo: updateTaskItem.memo,
+        category_id: String(updateTaskItem.category_id || ""),
+        status_id: String(updateTaskItem.status_id || ""),
+        type: updateTaskItem.type,
+        period: updateTaskItem.period || "",
+        complete: updateTaskItem.complete,
+        expenditure: updateTaskItem.expenditure
+          ? Number(updateTaskItem.expenditure)
+          : 0,
+      });
+    }
+  }, [updateTaskItem]);
 
   const handleCloseClick = () =>
     setIsModalOpen({
       isOpen: false,
-      type: "addTask",
+      type: isUpdate ? "update" : "addTask",
     });
 
   const handleMainTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,30 +95,43 @@ const AddTaskModal = ({
     });
   };
 
-  const handleAddClick = async () => {
+  const handleSubmitClick = async () => {
     try {
       const dataToSend = {
         ...taskData,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        subtasks: taskData.subtasks.map(({ id, ...rest }) => rest),
+        category_id: String(taskData.category_id),
+        status_id: String(taskData.status_id),
+        type: String(taskData.type),
+        subtasks: taskData.subtasks.map(({ task, complete, order }) => ({
+          task,
+          complete,
+          order,
+        })),
       };
-      const response = await api.post("/tasks", dataToSend);
-      console.log("Task 생성 성공:", response.data);
 
+      console.log("전송할 데이터:", {
+        url: isUpdate ? `/tasks/${updateTaskItem?.id}` : "/tasks",
+        method: isUpdate ? "PUT" : "POST",
+        data: dataToSend,
+      });
+
+      if (isUpdate && updateTaskItem?.id) {
+        await api.put(`/tasks/${updateTaskItem.id}`, dataToSend);
+      } else {
+        await api.post("/tasks", dataToSend);
+      }
       setIsModalOpen({ isOpen: false, type: "" });
       refreshData();
     } catch (err) {
-      console.error("Task 생성 실패:", err);
+      console.error(isUpdate ? "Task 수정 실패:" : "Task 생성 실패:", err);
     }
   };
-
-  console.log(taskData);
 
   return (
     <div className={AddTaskModalStyle}>
       <div>
         <ModalHeader
-          title="태스크 추가"
+          title={isUpdate ? "태스크 수정" : "태스크 추가"}
           handleCloseClick={handleCloseClick}
           size="large"
         />
@@ -115,7 +155,11 @@ const AddTaskModal = ({
       </div>
 
       <div className={AddButtonStyle}>
-        <Button text="추가하기" onClick={handleAddClick} type="primary" />
+        <Button
+          text={isUpdate ? "수정하기" : "추가하기"}
+          onClick={handleSubmitClick}
+          type="primary"
+        />
       </div>
     </div>
   );

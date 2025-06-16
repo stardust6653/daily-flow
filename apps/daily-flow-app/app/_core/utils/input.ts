@@ -23,3 +23,11 @@ export const setFormData = <T extends Record<string, any>, K extends keyof T>(
     [key]: value,
   }));
 };
+
+// 필드 유효성 검사를 공통 로직으로 추출
+const isValid = (field: string, regex: RegExp) => {
+  return regex.test(field);
+};
+
+isValid("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+isValid("password", /[!@#$%^&*(),.?":{}|<>]/);

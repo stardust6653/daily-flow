@@ -15,11 +15,13 @@ import { useCategories } from "@/hooks/useCategories";
 import { useTasks } from "@/hooks/useTasks";
 import { useTaskStatus } from "@/hooks/useTaskStatus";
 import DeleteCategoryModal from "../_core/components/pages/main/DeleteCategoryModal";
+import { ModalType } from "@/types/task";
 
 const MainPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState({
+  const [isModalOpen, setIsModalOpen] = useState<ModalType>({
     isOpen: false,
     type: "",
+    taskId: "",
   });
 
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -63,6 +65,18 @@ const MainPage = () => {
               taskStatuses={taskStatuses}
               setIsModalOpen={setIsModalOpen}
               selectedCategory={selectedCategory}
+            />
+          </Modal>
+        )}
+
+        {isModalOpen.type === "update" && isModalOpen.isOpen && (
+          <Modal size="large">
+            <AddTaskModal
+              refreshData={refreshData}
+              taskStatuses={taskStatuses}
+              setIsModalOpen={setIsModalOpen}
+              selectedCategory={selectedCategory}
+              updateTaskItem={tasks.find((t) => t.id === isModalOpen.taskId)}
             />
           </Modal>
         )}

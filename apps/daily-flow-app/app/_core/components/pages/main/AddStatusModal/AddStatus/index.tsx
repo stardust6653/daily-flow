@@ -13,7 +13,7 @@ import {
   SubColorChipStyle,
 } from "./AddStatus.css";
 
-import ColorChipList from "@/app/data/colorChipList.json";
+import ColorChipList from "@/app/_core/data/colorChipList.json";
 import { TaskStatusType } from "@/types/types";
 import { FaCheck } from "react-icons/fa";
 
