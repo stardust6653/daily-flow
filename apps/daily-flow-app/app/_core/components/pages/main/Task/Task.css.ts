@@ -14,14 +14,17 @@ export const TaskStyle = style({
 });
 
 export const EditButtonStyle = style({
-  position: "absolute",
-  top: "10px",
-  right: "10px",
+  width: "100%",
+  textAlign: "center",
   background: "#fff",
+  marginTop: "6px",
   border: "1px solid #ccc",
   borderRadius: "4px",
   padding: "2px 8px",
   fontSize: "12px",
   cursor: "pointer",
   zIndex: 2,
+  ":hover": {
+    backgroundColor: "#f0f0f0",
+  },
 });

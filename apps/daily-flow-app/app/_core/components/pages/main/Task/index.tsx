@@ -42,6 +42,11 @@ const Task = ({
     });
   };
 
+  const handleUpdateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsModalOpen({ isOpen: true, type: "update", taskId: item.id });
+  };
+
   return (
     <>
       <div
@@ -51,17 +56,13 @@ const Task = ({
         onClick={handleClick}
         onContextMenu={handleContextMenu}
       >
-        <button
-          className={EditButtonStyle}
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsModalOpen({ isOpen: true, type: "update", taskId: item.id });
-          }}
-        >
-          수정
-        </button>
         <TaskContent item={item} refreshData={refreshData} />
-        <TaskType item={item} />
+        <div>
+          <TaskType item={item} />
+          <button className={EditButtonStyle} onClick={handleUpdateClick}>
+            수정
+          </button>
+        </div>
         {item?.subtasks?.length > 0 && <SubTaskMark data={data} />}
 
         {isDeleteModalOpen.isOpen && item.id === isDeleteModalOpen.task && (
