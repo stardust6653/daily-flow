@@ -14,9 +14,10 @@ import {
 import { CategoryType } from "@/types/types";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import api from "@/app/api/axios";
+import { ModalType } from "@/types/task";
 
 interface DeleteCategoryModalProps {
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
   categories: CategoryType[];
   selectedCategory: string;
   refreshData: () => void;

@@ -9,10 +9,11 @@ import {
 } from "./AddExpenditureModal.css";
 import api from "@/app/api/axios";
 import { useSearchParams } from "next/navigation";
+import { ModalType } from "@/types/task";
 
 interface AddExpenditureModalProps {
   refreshData: () => void;
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
 }
 
 const AddExpenditureModal = ({

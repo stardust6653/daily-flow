@@ -36,3 +36,9 @@ export interface TaskItemType {
   complete?: boolean;
   expenditure?: number;
 }
+
+export interface ModalType {
+  isOpen: boolean;
+  type: string;
+  taskId?: string;
+}

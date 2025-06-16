@@ -31,12 +31,13 @@ import { CiMemoPad } from "react-icons/ci";
 import { SubTaskType, TaskStatusType, TaskType } from "@/types/types";
 import api from "@/app/api/axios";
 import Button from "../../../common/Button";
+import { ModalType } from "@/types/task";
 
 interface DetailModalProps {
   refreshData: () => void;
   tasks: TaskType[];
   taskStatuses: TaskStatusType[];
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
 }
 
 const DetailModal = ({

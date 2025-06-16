@@ -6,10 +6,11 @@ import { Dispatch, SetStateAction } from "react";
 
 import SidebarNavigation from "./SidebarNavigation";
 import { CategoryType } from "@/types/types";
+import { ModalType } from "@/types/task";
 
 interface SidebarProps {
   setSelectedCategory: Dispatch<SetStateAction<string>>;
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
   categories: CategoryType[];
 }
 

@@ -8,13 +8,14 @@ import {
   ColorChipStyle,
   SelectedColorStyle,
 } from "./AddCategoryModal.css";
-import colorChipData from "@/app/data/colorChipList.json";
+import colorChipData from "@/app/_core/data/colorChipList.json";
 import { FaCheck } from "react-icons/fa";
 import api from "@/app/api/axios";
+import { ModalType } from "@/types/task";
 
 interface AddCategoryModalProps {
   refreshData: () => void;
-  setIsModalOpen: Dispatch<SetStateAction<{ isOpen: boolean; type: string }>>;
+  setIsModalOpen: Dispatch<SetStateAction<ModalType>>;
 }
 
 const AddCategoryModal = ({
