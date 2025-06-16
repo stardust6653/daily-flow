@@ -75,9 +75,8 @@ const DetailModal = ({
       .put(`/tasks/${item.id}`, {
         complete: !item.complete,
       })
-      .then((res) => {
-        console.log(res);
-        setIsModalOpen({ isOpen: true, type: "update" });
+      .then(() => {
+        setIsModalOpen({ isOpen: false, type: "" });
         refreshData();
       })
       .catch((err) => {
