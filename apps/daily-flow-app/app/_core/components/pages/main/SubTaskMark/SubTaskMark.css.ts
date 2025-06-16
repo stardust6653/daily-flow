@@ -5,6 +5,6 @@ export const SubTaskMarkStyle = style({
   bottom: "0",
   left: "0",
   borderRadius: "0 50% 0 0",
-  width: "20px",
-  height: "20px",
+  width: "15px",
+  height: "15px",
 });
