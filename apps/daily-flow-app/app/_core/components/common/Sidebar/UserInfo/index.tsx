@@ -43,8 +43,6 @@ const UserInfo = () => {
     router.push("/");
   };
 
-  console.log(data);
-
   return (
     <div className={UserInfoStyle}>
       <div className={UserProfileGroupStyle}>
@@ -52,7 +50,7 @@ const UserInfo = () => {
         <p>{data?.nickname || "로딩 중"}</p>
       </div>
       <div>
-        <button>
+        <button onClick={() => alert("현재 기능을 준비 중입니다.")}>
           <FiSettings className={IconStyle} />
         </button>
 

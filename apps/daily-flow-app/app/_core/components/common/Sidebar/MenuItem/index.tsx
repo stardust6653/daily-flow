@@ -11,7 +11,7 @@ interface MenuItemProps {
 const MenuItem = ({ item }: MenuItemProps) => {
   return (
     <li className={MenuItemStyle} key={item.key}>
-      <a href={item.href}>{item.element}</a>
+      <a onClick={() => alert("현재 기능을 준비 중입니다.")}>{item.element}</a>
     </li>
   );
 };
