@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import Sidebar from "../_core/components/common/Sidebar";
 import MainSection from "../_core/components/pages/main/MainSection";
 import PageWrapper from "../_core/components/layout/PageWrapper";
@@ -31,10 +31,21 @@ const MainPage = () => {
     setRefreshTrigger((prev) => prev + 1);
   }, []);
 
+  const prevCategoriesLength = useRef(0);
+
   useEffect(() => {
-    if (categories.length > 0) {
+    if (categories.length === 0) return;
+
+    if (categories.length > prevCategoriesLength.current) {
+      setSelectedCategory(categories[categories.length - 1].id);
+      prevCategoriesLength.current = categories.length;
+      return;
+    }
+
+    if (!categories.some((category) => category.id === selectedCategory)) {
       setSelectedCategory(categories[0].id);
     }
+    prevCategoriesLength.current = categories.length;
   }, [categories]);
 
   const modalProps = getModalProps(isModalOpen.type, {
