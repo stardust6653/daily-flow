@@ -121,6 +121,15 @@ const AddTaskModal = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSubmitClick();
+    }
+    if (e.key === "Escape") {
+      handleCloseClick();
+    }
+  };
+
   return (
     <div className={AddTaskModalStyle}>
       <div>
@@ -135,6 +144,7 @@ const AddTaskModal = ({
           placeholder="할 일을 입력해주세요"
           value={taskData.main_task}
           onChange={handleMainTaskChange}
+          onKeyDown={handleKeyDown}
         />
         <div className={AddWrapperStyle}>
           <AddSubTask taskData={taskData} setTaskData={setTaskData} />

@@ -41,8 +41,34 @@ const DeleteModal = ({
     });
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    console.log(e.key, "key 다운");
+    if (e.key === "Enter") {
+      e.stopPropagation();
+      (async () => {
+        try {
+          await api.delete(`/tasks/${item.id}`);
+          refreshData();
+        } catch (err) {
+          console.error(err);
+        }
+        setIsDeleteModalOpen({
+          isOpen: false,
+          task: "",
+        });
+      })();
+    }
+    if (e.key === "Escape") {
+      setIsDeleteModalOpen({ isOpen: false, task: "" });
+    }
+  };
+
   return (
-    <div className={DeleteModalStyle} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={DeleteModalStyle}
+      onClick={(e) => e.stopPropagation()}
+      onKeyDown={handleKeyDown}
+    >
       <div className={DeleteModalContentStyle}>
         <span
           className={DeleteModalColorStyle}

@@ -43,8 +43,6 @@ const AddCategoryModal = ({
     });
   };
 
-  console.log(addCategoryData);
-
   const handleAddClick = async () => {
     await api
       .post("/categories", {
@@ -59,6 +57,15 @@ const AddCategoryModal = ({
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleAddClick();
+    }
+    if (e.key === "Escape") {
+      handleCloseClick();
+    }
   };
 
   return (
@@ -94,6 +101,7 @@ const AddCategoryModal = ({
           className={AddCategoryInputStyle}
           type="text"
           placeholder="카테고리를 입력하세요"
+          onKeyDown={handleKeyDown}
         />
       </div>
 
