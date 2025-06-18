@@ -1,3 +1,6 @@
+import { randomUUID } from 'crypto';
+global.crypto = { randomUUID } as any;
+
 // src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';

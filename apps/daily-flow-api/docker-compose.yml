@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - '5432:5432'
+    volumes:
+      - /share/homes/dev/daily-flow-db:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  nestjs-backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: nestjs_app
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+    env_file:
+      - .env.production
+    volumes:
+      - /share/homes/dev/daily-flow-log:/app/logs
+    restart: unless-stopped
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
