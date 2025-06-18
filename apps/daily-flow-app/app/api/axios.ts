@@ -1,7 +1,8 @@
 import axios from "axios";
+import { rawLogout } from "@/app/_core/contexts/AuthContext";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   withCredentials: true,
 });
 
@@ -15,6 +16,18 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// 응답 인터셉터 추가: 401 에러 시 로그아웃 및 이동
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      rawLogout();
+      window.location.href = "/";
+    }
     return Promise.reject(error);
   }
 );

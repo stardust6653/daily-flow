@@ -32,10 +32,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   };
 
+  const rawLogout = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("accessToken");
+    }
+    delete api.defaults.headers.common["Authorization"];
+  };
+
   const logout = () => {
     setAccessToken(null);
-    localStorage.removeItem("accessToken");
-    delete api.defaults.headers.common["Authorization"];
+    rawLogout();
   };
 
   return (
@@ -50,4 +56,10 @@ export const useAuth = () => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
+};
+export const rawLogout = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("accessToken");
+  }
+  delete api.defaults.headers.common["Authorization"];
 };
