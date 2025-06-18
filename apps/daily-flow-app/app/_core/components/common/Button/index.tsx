@@ -4,7 +4,7 @@ interface ButtonProps {
   text: string;
   onClick: () => void;
   margin?: string;
-  type: "primary" | "white";
+  type: "primary" | "white" | "secondary" | "outline";
   isValid?: boolean;
 }
 

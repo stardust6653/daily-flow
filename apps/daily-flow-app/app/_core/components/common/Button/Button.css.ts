@@ -35,6 +35,30 @@ export const ButtonStyle = styleVariants({
       },
     },
   ],
+  secondary: [
+    baseButtonStyle,
+    {
+      backgroundColor: themeVars.colors.primary.lighter,
+      color: themeVars.colors.primary.dark,
+      ":hover": {
+        backgroundColor: themeVars.colors.primary.light,
+        color: themeVars.colors.primary.main,
+      },
+    },
+  ],
+  outline: [
+    baseButtonStyle,
+    {
+      backgroundColor: "transparent",
+      color: themeVars.colors.primary.main,
+      border: `1.5px solid ${themeVars.colors.primary.main}`,
+      ":hover": {
+        borderColor: themeVars.colors.primary.lightest,
+        backgroundColor: themeVars.colors.primary.lightest,
+        color: themeVars.colors.primary.darker,
+      },
+    },
+  ],
 });
 
 export const DisabledStyle = styleVariants({

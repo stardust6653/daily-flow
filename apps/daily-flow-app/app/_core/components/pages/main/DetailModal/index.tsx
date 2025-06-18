@@ -190,6 +190,14 @@ const DetailModal = ({
           text={task?.complete ? "미완료 변경" : "완료하기"}
           onClick={() => handleCompleteClick(task as TaskType)}
         />
+        <Button
+          type="outline"
+          text="수정하기"
+          onClick={() =>
+            setIsModalOpen({ isOpen: true, type: "update", taskId: task?.id })
+          }
+          margin="0 0 0 8px"
+        />
       </div>
     </div>
   );
