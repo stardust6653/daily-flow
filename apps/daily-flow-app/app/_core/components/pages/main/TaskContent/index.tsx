@@ -29,8 +29,7 @@ const TaskContent = ({ item, refreshData }: TaskContentProps) => {
       .put(`/tasks/${item.id}`, {
         complete: !item.complete,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         refreshData();
       })
       .catch((err) => {

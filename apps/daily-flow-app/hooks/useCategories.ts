@@ -8,7 +8,6 @@ export const useCategories = (refreshTrigger: number) => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      console.log("fetchCategories");
       try {
         const response = await api.get("/categories");
         setCategories(response.data);

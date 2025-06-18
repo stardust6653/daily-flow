@@ -8,7 +8,6 @@ export const useTasks = (categoryId: string, refreshTrigger: number) => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      console.log("fetchTasks");
       try {
         const response = await api.get(`/tasks/category/${categoryId}`);
         setTasks(response.data);

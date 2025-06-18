@@ -37,8 +37,7 @@ const AddStatusModal = ({
   const handleAddStatusClick = async () => {
     await api
       .post("/task-status", addStatusData)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         refreshData();
         setIsModalOpen({ isOpen: false, type: "" });
       })

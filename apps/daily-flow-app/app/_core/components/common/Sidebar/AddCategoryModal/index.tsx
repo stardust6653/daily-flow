@@ -49,8 +49,7 @@ const AddCategoryModal = ({
         name: addCategoryData.name,
         color: addCategoryData.color,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         refreshData();
         setIsModalOpen({ isOpen: false, type: "" });
       })

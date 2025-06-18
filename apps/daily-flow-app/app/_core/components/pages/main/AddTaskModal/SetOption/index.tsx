@@ -56,8 +56,6 @@ const SetOption = ({
     color: "",
   });
 
-  console.log(taskStatuses);
-
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 

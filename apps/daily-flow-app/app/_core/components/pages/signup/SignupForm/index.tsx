@@ -47,8 +47,7 @@ const SignupForm = () => {
         password: signupData.password,
         nickname: signupData.nickname,
       })
-      .then((res) => {
-        console.log("회원가입 응답:", res.data);
+      .then(() => {
         router.push("/complete");
       })
       .catch((err) => {

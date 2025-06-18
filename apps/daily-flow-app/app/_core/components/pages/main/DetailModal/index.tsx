@@ -55,15 +55,12 @@ const DetailModal = ({
   ) as TaskStatusType;
 
   const handleSubTaskUpdateClick = async (subtask: SubTaskType) => {
-    console.log(subtask);
-
     await api
       .put(`/subtasks/${subtask.id}`, {
         complete: !subtask.complete,
       })
-      .then((res) => {
+      .then(() => {
         refreshData();
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);

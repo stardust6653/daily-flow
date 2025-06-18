@@ -42,7 +42,6 @@ const DeleteModal = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    console.log(e.key, "key 다운");
     if (e.key === "Enter") {
       e.stopPropagation();
       (async () => {

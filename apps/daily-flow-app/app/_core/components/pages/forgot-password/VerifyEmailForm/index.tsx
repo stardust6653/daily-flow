@@ -7,6 +7,8 @@ import { VerifyEmailFormLabelStyle } from "./VerifyEmailForm.css";
 import { useRouter } from "next/navigation";
 
 const VerifyEmailForm = () => {
+  return null;
+
   const [email, setEmail] = useState("");
 
   console.log(email);
@@ -15,7 +17,7 @@ const VerifyEmailForm = () => {
   const onClick = () => router.push("/forgot-password/change-password");
 
   return (
-    <AuthFormWrapper type="forgotPassword" onClick={onClick}>
+    <AuthFormWrapper type="forgotPassword" onClick={onClick} isValid={true}>
       <div>
         <label className={VerifyEmailFormLabelStyle} htmlFor="email">
           가입한 이메일을 입력해주세요

@@ -6,6 +6,8 @@ import Input from "../../../common/Input";
 import { useState } from "react";
 
 const ChangePasswordForm = () => {
+  return null;
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -15,7 +17,7 @@ const ChangePasswordForm = () => {
   const onClick = () => router.push("/complete");
 
   return (
-    <AuthFormWrapper type="changePassword" onClick={onClick}>
+    <AuthFormWrapper type="changePassword" onClick={onClick} isValid={true}>
       <Input
         setValue={setPassword}
         errorMessage="최소한 하나 이상의 특수문자가 포함되어야 합니다"

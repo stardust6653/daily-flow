@@ -36,8 +36,7 @@ const DeleteCategoryModal = ({
   const handleDeleteClick = async () => {
     await api
       .delete(`/categories/${selectedCategory}`)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         setIsModalOpen({ isOpen: false, type: "" });
         refreshData();
       })
