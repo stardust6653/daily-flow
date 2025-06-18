@@ -37,14 +37,27 @@ const AddExpenditureModal = ({
       .put(`/tasks/${id}`, {
         expenditure: expenditure,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         refreshData();
         setIsModalOpen({ isOpen: false, type: "" });
       })
       .catch((err) => {
         console.error(err);
       });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value === "" || /^\d+$/.test(value)) {
+      setExpenditure(value === "" ? 0 : Number(value));
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAddExpenditureClick();
+    }
   };
 
   return (
@@ -65,7 +78,8 @@ const AddExpenditureModal = ({
             min={0}
             placeholder="지출 금액을 입력해주세요"
             value={expenditure === 0 ? "" : expenditure}
-            onChange={(e) => setExpenditure(Number(e.currentTarget.value))}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
           <span className={AddExpenditureWonStyle}>원</span>
         </div>
