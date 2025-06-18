@@ -13,6 +13,7 @@ export interface SignupDataType {
   password: string;
   confirmed_password: string;
   nickname: string;
+  [key: string]: string;
 }
 
 const SignupForm = () => {

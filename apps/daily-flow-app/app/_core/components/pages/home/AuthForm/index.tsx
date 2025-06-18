@@ -12,6 +12,7 @@ import { signinFormConfig } from "@/app/_core/config/auth/signinFormConfig";
 export interface SigninDataType {
   email: string;
   password: string;
+  [key: string]: string;
 }
 
 const AuthForm: React.FC = () => {

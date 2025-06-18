@@ -13,7 +13,8 @@ export const signupFormConfig = (
 
   return [
     {
-      setValue: (value: string) => setFormData(value, "email", setter),
+      setValue: (value: string) =>
+        setFormData<SignupDataType, "email">(value, "email", setter),
       errorMessage:
         emailErrorMessage !== ""
           ? emailErrorMessage
@@ -22,7 +23,8 @@ export const signupFormConfig = (
       type: "email",
     },
     {
-      setValue: (value: string) => setFormData(value, "nickname", setter),
+      setValue: (value: string) =>
+        setFormData<SignupDataType, "nickname">(value, "nickname", setter),
       errorMessage: getFieldErrorMessage(
         validatorData.errors["nickname"],
         data?.nickname
@@ -31,7 +33,8 @@ export const signupFormConfig = (
       type: "text",
     },
     {
-      setValue: (value: string) => setFormData(value, "password", setter),
+      setValue: (value: string) =>
+        setFormData<SignupDataType, "password">(value, "password", setter),
       errorMessage: getFieldErrorMessage(
         validatorData.errors["password"],
         data?.password
@@ -41,7 +44,11 @@ export const signupFormConfig = (
     },
     {
       setValue: (value: string) =>
-        setFormData(value, "confirmed_password", setter),
+        setFormData<SignupDataType, "confirmed_password">(
+          value,
+          "confirmed_password",
+          setter
+        ),
       errorMessage:
         validatorData.errors["password-confirm"] &&
         "비밀번호가 일치하지 않습니다",

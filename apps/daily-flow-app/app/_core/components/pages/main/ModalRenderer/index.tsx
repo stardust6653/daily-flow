@@ -1,3 +1,5 @@
+"use client";
+
 import { ModalType } from "@/types/task";
 import Modal from "../../../common/Modal";
 import AddTaskModal from "../AddTaskModal";
